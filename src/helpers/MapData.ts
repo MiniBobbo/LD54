@@ -19,5 +19,10 @@ export class MapData {
             this.complete = true;
     }
 
+    Reset() {
+        this.player.Reset();
+        this.complete = false;
+    }
+
 
 }

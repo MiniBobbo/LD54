@@ -4,6 +4,8 @@ import { GameScene } from "./scenes/GameScene";
 import { C } from "./C";
 import { GameData } from "./GameData";
 import { MainMenuScene } from "./scenes/MainMenuScene";
+import { TestHelper } from "./helpers/TestHelper";
+import { TestScene } from "./scenes/TestScene";
 
 
 class Main extends Phaser.Game {
@@ -32,6 +34,7 @@ class Main extends Phaser.Game {
 
     // this.scene.add("boot", Boot, false);
     this.scene.add("menu", MainMenuScene, false);
+    this.scene.add("test", TestScene, false);
     this.scene.add("preload", Preload, false);
     this.scene.add("game", GameScene, false);
     this.scene.start("preload");
