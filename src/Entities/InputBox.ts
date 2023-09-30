@@ -1,10 +1,12 @@
 import { C } from "../C";
+import { Instructions } from "../enum/Instructions";
+import { SceneEvents } from "../events/SceneEvents";
 import { InstructionScene } from "../scenes/InstructionScene";
 
 export class InputBox {
     scene:InstructionScene;
     s:Phaser.GameObjects.Image;
-    i:number = 1;
+    i:number = Instructions.Nothing;
 
     constructor(scene:Phaser.Scene) {
         this.scene = scene as InstructionScene;
@@ -12,6 +14,7 @@ export class InputBox {
         this.s.on('pointerup', ()=>{
             this.i = this.scene.SelectedInstruction;
             this.s.setFrame(C.InstructionToString(this.i));
+            this.scene.events.emit(SceneEvents.CHANGED_INPUTS);
         }, this);
     }
 

@@ -1,3 +1,5 @@
+import { C } from "../C";
+import { MapDataStatus } from "../enum/MapDataStatus";
 import { MapData } from "./MapData";
 
 export class TestHelper {
@@ -31,25 +33,25 @@ export class TestHelper {
             currentList.pop(); // Remove the last element for backtracking
         }
     
+        
         return results;
+
+        
     }
 
-    static TestInstructions(md:MapData, inst:number[]):TestResults {
-        md.Reset();
+    static TestInstructions(md:MapData, GoBotInst:number[]):TestResults {
         let r = new TestResults();
-        r.instructions = [...inst];
+        r.GoBotInstructions = [...GoBotInst];
         r.name = md.name;
-        let currentinst = [...inst];
+        md.GoBotInstructions = GoBotInst;
+        md.Prepare();
 
-        while(!r.success && r.steps < this.testLength) {
-            r.steps++;
-            if(currentinst.length == 0)
-            currentinst = [...inst];
+        do {
             md.Step();
-            if(md.complete)
-                r.success = true;
-        }
+        } while(md.Status == MapDataStatus.RUNNING && md.ElapsedSteps < C.MAX_STEPS_ALLOWED); 
 
+        r.steps = md.ElapsedSteps;
+        r.success = md.Status == MapDataStatus.COMPLETE;
         return r;
     }
 }
@@ -58,5 +60,5 @@ export class TestResults {
     name:string = 'test';
     success:boolean = false;
     steps:number = 0;
-    instructions:number[];
+    GoBotInstructions:number[];
 }

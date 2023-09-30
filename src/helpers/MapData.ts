@@ -1,12 +1,16 @@
+import { EntityStatus } from "../enum/EntityStatus";
 import { Instructions } from "../enum/Instructions";
+import { MapDataStatus } from "../enum/MapDataStatus";
 import { Layer } from "../map/LDtkReader";
 import { EntityModel } from "../models/EntityModel";
+import { GoBotModel } from "../models/GoBotModel";
 
 export class MapData {
     name:string= '';
     complete:boolean = false;
     tiles:Phaser.Tilemaps.TilemapLayer;
-    GoBots:EntityModel[] = [];
+    AllBots:EntityModel[] = [];
+    GoBots:GoBotModel[] = [];
     end:EntityModel;
     MemCount:number = 3;
     Sub1:number = 0;
@@ -14,22 +18,69 @@ export class MapData {
     Commands:Instructions[] = [];
     InputsAllowed:string[] = [];
     GoBotInstructionsAllowed:number = 0;
+    GoBotInstructions:Instructions[] = [];
+    private fullGoBotInstructions:Instructions[] = [];
+    private currentGoBotStep:number = 0;
     ElapsedSteps = 0;
+    Status:MapDataStatus = MapDataStatus.INITIAL;
+
+
+    private emitter:Phaser.Events.EventEmitter;
 
     private TempID:number = 0;
 
 
     GoBotStep:number = 0;
 
+    Prepare() {
+        this.fullGoBotInstructions = this.GenerateFullInstructionSet(this.GoBotInstructions);
+        this.currentGoBotStep = 0;
+        this.ElapsedSteps = 0;
+        this.AllBots.forEach(element => {
+            element.Reset();
+        });
+
+        this.Status = MapDataStatus.READY;
+        this.Reset();
+    }
+
     /**
      * This function advances the game one step.  It will update the model and send out scene messages for
      * all the movement and whatever.
      */
     Step() {
+        this.ElapsedSteps++;
+        this.Status = MapDataStatus.RUNNING;
+        //The basic process is a PreStep check, a Step, and then a PostStep check.  
+        //Not sure I need a prestep...
+        let nextGoBotInstruction:Instructions = this.fullGoBotInstructions[this.currentGoBotStep];
+        this.currentGoBotStep++;
+        //If this is the end of the instructions loop back around to the beginning.
+        if(this.currentGoBotStep >= this.fullGoBotInstructions.length)
+            this.currentGoBotStep = 0;
 
-        // this.player.Step(i);
-        // if(this.player.x == this.end.x && this.player.y == this.end.y)
-            // this.complete = true;
+        //Run the GoBot instructions an all the GoBots.
+        this.GoBots.forEach(gb => {
+            gb.Step(nextGoBotInstruction);
+        });
+
+        //Run the GoBot post checks.  Check for overlaps, stepping on teleporters, etc.
+        this.GoBots.forEach(gb => {
+            if(gb.x == this.end.x && gb.y == this.end.y)
+                gb.Success();
+        });
+
+        //Check for wins and losses.  
+        if(this.AllBots.filter(b=>b.status == EntityStatus.DESTROYED).length > 0)
+            this.Status = MapDataStatus.FAILED;
+        else if(this.AllBots.filter(b=>b.status != EntityStatus.COMPLETE).length == 0)
+            this.Status = MapDataStatus.COMPLETE;
+
+
+    }
+
+    SetEmitter(emitter:Phaser.Events.EventEmitter) {
+        this.emitter = emitter;
     }
 
     Reset() {
@@ -38,6 +89,7 @@ export class MapData {
         });
         this.complete = false;
         this.ElapsedSteps = 0;
+        this.Status = MapDataStatus.INITIAL;
     }
 
     /**
@@ -46,6 +98,21 @@ export class MapData {
      */
     GetID():number {
         return this.TempID++;
+    }
+
+    LoadGoBotInstructions(i:Instructions[]) {
+        this.GoBotInstructions = i;
+    }
+
+    /**
+     * Builds an instruction list.  Includes subroutines.  
+     * @returns Full instruction list.
+     */
+    private GenerateFullInstructionSet(partial:Instructions[]):Instructions[] {
+        let full:Instructions[] = [];
+        //TODO: Subroutines.
+
+        return [...partial];
     }
 
 

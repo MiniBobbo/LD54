@@ -1,10 +1,11 @@
+import { Instructions } from "../enum/Instructions";
 import { InstructionScene } from "../scenes/InstructionScene";
 import { InputBox } from "./InputBox";
 
 export class RobotInputs {
     Name:string = '';
     scene:InstructionScene;
-    Inputs:InputBox[];
+    Inputs:InputBox[] = [];
     c:Phaser.GameObjects.Container;
 
     constructor(name:string, scene:InstructionScene, count:number = 4) {
@@ -15,10 +16,21 @@ export class RobotInputs {
         this.c.add(t);
 
         for (let index = 0; index < count; index++) {
+            let x = 30 + (index%4) * 70;
+            let y = 70 + (Math.floor(index/4) * 80)  
             let ib = new InputBox(this.scene);
-            ib.s.setPosition(30 + index * 70, 70);
+            ib.s.setPosition(x, y);
             this.c.add(ib.s);
+            this.Inputs.push(ib);
         }
+    }
+
+    GetInstructions():Instructions[] {
+        let i:Instructions[] = [];
+        this.Inputs.forEach(element => {
+            i.push(element.i);
+        });
+        return i;
     }
 
 }

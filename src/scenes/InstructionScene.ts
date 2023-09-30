@@ -14,6 +14,10 @@ export class InstructionScene extends Phaser.Scene {
 
     RobotInp:RobotInputs[] = [];
 
+    emitter:Phaser.Events.EventEmitter;
+
+    debug:Phaser.GameObjects.BitmapText;
+
     create() {
         this.cameras.main
         .setSize(300,700)
@@ -28,10 +32,12 @@ export class InstructionScene extends Phaser.Scene {
 
 
         this.add.bitmapText(10,0, '5px', 'Commands').setScale(4);
+        this.debug = this.add.bitmapText(10,750, '5px', 'debug').setScale(4);
 
         this.cameras.main.postFX.addBloom(0xffffff, 1,1,1,2);
 
         this.events.on(SceneEvents.SELECTED, (i:number)=>{ this.selctImage.setVisible(true).setFrame(C.InstructionToString(i)); this.SelectedInstruction = i;});
+        this.events.on(SceneEvents.CHANGED_INPUTS, ()=>{ this.events.emit(SceneEvents.RESET);});
         this.input.on('pointerup', ()=>{ 
             this.selctImage.setVisible(false); 
             this.SelectedInstruction = Instructions.Nothing;});
@@ -50,12 +56,28 @@ export class InstructionScene extends Phaser.Scene {
         .setInteractive();
         this.add.bitmapText(150, go.y + 25, '5px', 'GO').setMaxWidth(280).setOrigin(.5).setScale(4);
 
-        go.on('pointerdown', ()=> {this.events.emit(SceneEvents.GO);});
+
+
+        go.on('pointerdown', ()=> {this.TryGo();});
+    }
+
+    SetEmitter(e:Phaser.Events.EventEmitter) {
+        this.emitter = e;
+    }
+
+    TryGo() {
+        //TODO: Check for blank commands.  Don't allow the user to enter nothing. 
+        this.events.emit(SceneEvents.GO);
+    }
+
+    Reset() {
+        this.events.emit(SceneEvents.RESET);
     }
 
 
     update(time: number, delta: number): void {
         // let p = this.input.activePointer.worldX
+        // this.cameras.main.getWorldPoint();
         this.selctImage.setPosition(this.input.activePointer.worldX - 700, this.input.activePointer.worldY);
     }
 

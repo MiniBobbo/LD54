@@ -1,3 +1,4 @@
+import { EntityStatus } from "../enum/EntityStatus";
 import { Instructions } from "../enum/Instructions";
 import { MapData } from "../helpers/MapData";
 import { LDtkMapPack } from "../map/LDtkReader";
@@ -8,6 +9,8 @@ export class EntityModel {
     y:number;
     d:Direction = Direction.North;
     map:MapData;
+    status:EntityStatus = EntityStatus.NORMAL;
+
 
     private startX:number;
     private startY:number;
@@ -25,6 +28,8 @@ export class EntityModel {
     }
 
     Step(instruction:Instructions) {
+        if(this.status == EntityStatus.COMPLETE)
+        return;
         switch (instruction) {
             case Instructions.Forward:
                 this.Forward();
@@ -85,6 +90,13 @@ export class EntityModel {
         this.x = this.startX;
         this.y = this.startY;
         this.d = this.startDir;
+        this.status = EntityStatus.NORMAL;
+    }
+
+    Success() {
+        this.status = EntityStatus.COMPLETE;
+        this.x = 1000;
+        this.y = 1000;
     }
 }
 

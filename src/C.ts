@@ -2,27 +2,13 @@ import { GameData } from "./GameData";
 import { Instructions } from "./enum/Instructions";
 
 export class C {
-    static currentLevel:string = 'Level_1';
+    static currentLevel:string = 'Level_4';
     static previouslevel:string = 'start';
     static waypoint:string = '';
 
     static TILE_SIZE_X:number = 60;
     static TILE_SIZE_Y:number = 46;
-    static GRAVITY:number = 1000;
-    // static GRAVITY:number = 1000;
-    static MAX_Y_SPEED:number = 500;
-    static PLAYER_GROUND_SPEED:number = 100;
-    static PLAYER_SLIDE_DRAG:number = 700;
-    static PLAYER_SLIDE_SPEED:number = 300;
-    static PLAYER_CLIMB_SPEED:number = 50;
-    static PLAYER_AIR_SPEED:number = 100;
-    static PLAYER_GROUND_ACCEL:number = 800;
-    static PLAYER_AIR_ACCEL:number = 400;
-    static PLAYER_GROUND_DRAG:number = 400;
-    static PLAYER_AIR_DRAG:number = 400;
-    static PLAYER_JUMP_STR:number = 200;
-    static PLAYER_JUMP_TIME:number = 300;
-    static PLAYER_ATTACK_TIME:number = 250;
+    static MAX_STEPS_ALLOWED = 500;
 
     static MOUSE_SENSITIVITY:number = .8;
 

@@ -7,18 +7,24 @@ export class Robot {
     startX:number;
     startY:number;
     startD:Direction;
+    ID:number = 0;
 
-    constructor(scene:Phaser.Scene) {
+    constructor(scene:Phaser.Scene, ID:number) {
         this.scene = scene;
         this.s = scene.add.sprite(0,0,'atlas', 'Robot2_North_0').setOrigin(.5,1);
+        this.ID = ID;
     }
 
     SetStartPosition(x:number, y:number, d:Direction) {
         this.startD = d;
-        this.SetDirection(d);
         this.startX = x;
         this.startY = y;
+        this.SetPosition(this.startX, this.startY, this.startD);
+    }
+
+    SetPosition(x:number, y:number, d:Direction) {
         this.s.setPosition(x * C.TILE_SIZE_X, y * C.TILE_SIZE_Y);
+        this.SetDirection(d);
     }
 
     SetDirection(d:Direction) {

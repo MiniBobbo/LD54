@@ -6,14 +6,15 @@ import { LdtkReader } from "../map/LDtkReader";
 export class TestScene extends Phaser.Scene {
     create() {
         let r = new LdtkReader(this, this.cache.json.get('levels'));
-        let mp = r.CreateMap('Level_1', 'tile');
+        let mp = r.CreateMap('Level_4', 'tile');
 
         let md = MapHelper.LoadMap(mp);
+        md.SetEmitter(this.events);
 
-        let i = TestHelper.generateInstructionLists([0,1,2, 3], md.MemCount);
+        let GoBotInstructions = TestHelper.generateInstructionLists(md.Commands, md.GoBotInstructionsAllowed);
 
         let allResults:TestResults[] = [];
-        i.forEach(element => {
+        GoBotInstructions.forEach(element => {
             let results = TestHelper.TestInstructions(md, element);
             allResults.push(results);
         });
@@ -23,10 +24,12 @@ export class TestScene extends Phaser.Scene {
         let success = allResults.filter(e=>e.success);
         console.log(`Total solutions found : ${success.length}`);
 
-        success.sort((a:TestResults,b:TestResults)=>a.steps - b.steps)
+        success.sort((a:TestResults,b:TestResults)=>a.steps - b.steps);
         success.forEach(element => {
-            console.log(`${element.instructions} : ${element.steps} Steps.`);
+            console.log(`${element.GoBotInstructions} : ${element.steps} Steps.`);
         });
+
+        // this.events
     }
 
     update() {

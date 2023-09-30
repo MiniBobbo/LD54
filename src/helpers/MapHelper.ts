@@ -1,6 +1,7 @@
 import { Instructions } from "../enum/Instructions";
 import { LDtkMapPack } from "../map/LDtkReader";
 import { Direction, EntityModel } from "../models/EntityModel";
+import { GoBotModel } from "../models/GoBotModel";
 import { MapData } from "./MapData";
 
 export class MapHelper {
@@ -9,8 +10,10 @@ export class MapHelper {
         md.tiles = map.collideLayer;
         let goBots = map.entityLayers.entityInstances.filter(e=>e.__identifier == 'GoBot');
         goBots.forEach(element => {
-            let dir = element.fieldInstances[0].__value
-            md.GoBots.push(new EntityModel(element.__grid[0], element.__grid[1], Direction[dir], md));
+            let dir = element.fieldInstances[0].__value;
+            let gb = new GoBotModel(element.__grid[0], element.__grid[1], Direction[dir], md);
+            md.GoBots.push(gb);
+            md.AllBots.push(gb);
         });
         // md.player = new EntityModel(player.__grid[0], player.__grid[1], Direction[dir], md);
         let end = map.entityLayers.entityInstances.find(e=>e.__identifier == 'End');
