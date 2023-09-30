@@ -1,19 +1,20 @@
 import { C } from "../C";
 import { Command } from "../Entities/Command";
+import { RobotInputs } from "../Entities/RobotInputs";
 import { Instructions } from "../enum/Instructions";
 import { SceneEvents } from "../events/SceneEvents";
+import { MapData } from "../helpers/MapData";
 
 export class InstructionScene extends Phaser.Scene {
-    CommandZones:Phaser.GameObjects.Zone[];
     selctImage:Phaser.GameObjects.Image;
 
     StartCommandLocation = {x:40, y:70};
 
     SelectedInstruction:Instructions;
 
-    create() {
-        this.CommandZones = [];
+    RobotInp:RobotInputs[] = [];
 
+    create() {
         this.cameras.main
         .setSize(300,700)
         .setBackgroundColor(0x494d7eff)
@@ -31,7 +32,9 @@ export class InstructionScene extends Phaser.Scene {
         this.cameras.main.postFX.addBloom(0xffffff, 1,1,1,2);
 
         this.events.on(SceneEvents.SELECTED, (i:number)=>{ this.selctImage.setVisible(true).setFrame(C.InstructionToString(i)); this.SelectedInstruction = i;});
-        this.input.on('pointerup', ()=>{ this.selctImage.setVisible(false);});
+        this.input.on('pointerup', ()=>{ 
+            this.selctImage.setVisible(false); 
+            this.SelectedInstruction = Instructions.Nothing;});
 
         // let c1 = new Command(this);
         // c1.SetCommand(30,70, Instructions.Forward);
@@ -41,7 +44,13 @@ export class InstructionScene extends Phaser.Scene {
         // c3.SetCommand(150,70, Instructions.Right);
 
         
+        let go = this.add.nineslice(10,600, 'atlas', 'CyberTile_3', 280, 60, 10,10,10,10)
+        .setOrigin(0,0)
+        .setTint(0x54ec36)
+        .setInteractive();
+        this.add.bitmapText(150, go.y + 25, '5px', 'GO').setMaxWidth(280).setOrigin(.5).setScale(4);
 
+        go.on('pointerdown', ()=> {this.events.emit(SceneEvents.GO);});
     }
 
 
@@ -50,13 +59,35 @@ export class InstructionScene extends Phaser.Scene {
         this.selctImage.setPosition(this.input.activePointer.worldX - 700, this.input.activePointer.worldY);
     }
 
-    CreateCommands(instructions:number[]) {
+    CreateAll(md:MapData) {
+        this.CreateCommands(md.Commands);
+        md.InputsAllowed.forEach(element =>{
+            switch (element) {
+                case 'GoBot':
+                    this.CreateInputs('GoBot', md.GoBotInstructionsAllowed);
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+    }
+
+
+    private CreateCommands(instructions:number[]) {
         for (let index = 0; index < instructions.length; index++) {
         let c1 = new Command(this);
         c1.SetCommand(this.StartCommandLocation.x + 60*index,this.StartCommandLocation.y, instructions[index]);
 
         }
     }
-    
 
+    private CreateInputs(name:string, count:number) {
+            let i = new RobotInputs(name, this, count);
+            i.c.setPosition(10, 130);
+            this.RobotInp.push(i);
+    }
+
+    
 }
+

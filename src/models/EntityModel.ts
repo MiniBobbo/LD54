@@ -3,6 +3,7 @@ import { MapData } from "../helpers/MapData";
 import { LDtkMapPack } from "../map/LDtkReader";
 
 export class EntityModel {
+    ID:number;
     x:number;
     y:number;
     d:Direction = Direction.North;
@@ -20,6 +21,7 @@ export class EntityModel {
         this.startX = x;
         this.startY = y;
         this.startDir = dir;
+        this.ID = map.GetID();
     }
 
     Step(instruction:Instructions) {

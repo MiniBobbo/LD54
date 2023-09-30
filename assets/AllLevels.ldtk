@@ -11,7 +11,7 @@
 	"iid": "4df56940-3b70-11ee-acc8-196ee84d6a89",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 26,
+	"nextUid": 29,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -168,7 +168,7 @@
 		}
 	], "entities": [
 		{
-			"identifier": "PlayerStart",
+			"identifier": "GoBot",
 			"uid": 4,
 			"tags": [],
 			"exportToToc": false,
@@ -345,6 +345,11 @@
 			{ "id": "Left", "tileRect": null, "color": 14120515 },
 			{ "id": "Right", "tileRect": null, "color": 15389866 },
 			{ "id": "Wait", "tileRect": null, "color": 14984818 }
+		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
+		{ "identifier": "Inputs", "uid": 26, "values": [
+			{ "id": "GoBot", "tileRect": null, "color": 12470831 },
+			{ "id": "Sub1", "tileRect": null, "color": 14120515 },
+			{ "id": "Sub2", "tileRect": null, "color": 15389866 }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [
 		{
@@ -419,6 +424,79 @@
 			"allowedRefsEntityUid": null,
 			"allowedRefTags": [],
 			"tilesetUid": null
+		},
+		{
+			"identifier": "InputsAllowed",
+			"doc": null,
+			"__type": "Array<LocalEnum.Inputs>",
+			"uid": 27,
+			"type": "F_Enum(26)",
+			"isArray": true,
+			"canBeNull": false,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "Hidden",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": {
+				"id": "V_String",
+				"params": ["GoBot"]
+			},
+			"textLanguageMode": null,
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
+		},
+		{
+			"identifier": "GoBotInstructions",
+			"doc": null,
+			"__type": "Int",
+			"uid": 28,
+			"type": "F_Int",
+			"isArray": false,
+			"canBeNull": false,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "Hidden",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": { "id": "V_Int", "params": [0] },
+			"textLanguageMode": null,
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
 		}
 	] },
 	"levels": [
@@ -446,7 +524,9 @@
 					"id": "V_String",
 					"params": ["Easy Peasy"]
 				}] },
-				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": ["Forward"], "__tile": null, "defUid": 25, "realEditorValues": [null] }
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": ["Forward"], "__tile": null, "defUid": 25, "realEditorValues": [null] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["GoBot"], "__tile": null, "defUid": 27, "realEditorValues": [null] },
+				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 1, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [1] }] }
 			],
 			"layerInstances": [
 				{
@@ -503,7 +583,7 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "PlayerStart",
+							"__identifier": "GoBot",
 							"__grid": [1,1],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -591,13 +671,18 @@
 					"id": "V_String",
 					"params": ["Square"]
 				}] },
-				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Forward" ], "__tile": null, "defUid": 25, "realEditorValues": [ null, {
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right" ], "__tile": null, "defUid": 25, "realEditorValues": [ null, {
 					"id": "V_String",
 					"params": ["Left"]
 				}, {
 					"id": "V_String",
-					"params": ["Forward"]
-				} ] }
+					"params": ["Right"]
+				} ] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["GoBot"], "__tile": null, "defUid": 27, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["GoBot"]
+				}] },
+				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }
 			],
 			"layerInstances": [
 				{
@@ -659,7 +744,7 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "PlayerStart",
+							"__identifier": "GoBot",
 							"__grid": [1,3],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -692,6 +777,22 @@
 							"defUid": 8,
 							"px": [240,80],
 							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 10, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "GoBot",
+							"__grid": [1,1],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"__worldX": 480,
+							"__worldY": 80,
+							"iid": "b9ad4440-3b70-11ee-b63b-f3cfcce65526",
+							"width": 80,
+							"height": 80,
+							"defUid": 4,
+							"px": [80,80],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 5, "realEditorValues": [] }]
 						}
 					]
 				},

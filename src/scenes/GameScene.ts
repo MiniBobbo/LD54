@@ -5,6 +5,7 @@ import { Instructions } from "../enum/Instructions";
 import { MapData } from "../helpers/MapData";
 import { MapHelper } from "../helpers/MapHelper";
 import { LDtkMapPack, LdtkReader } from "../map/LDtkReader";
+import { EntityModel } from "../models/EntityModel";
 import { InstructionScene } from "./InstructionScene";
 
 export class GameScene extends Phaser.Scene {
@@ -19,8 +20,8 @@ export class GameScene extends Phaser.Scene {
     TileArray:Tile[];
 
     create() {
-        this.cameras.
-        main.setBackgroundColor(0x000000)
+        this.cameras.main
+        .setBackgroundColor(0x000000)
         .setSize(350, 350)
         // .setPosition(200,200)
         // .setZoom(2);
@@ -37,8 +38,10 @@ export class GameScene extends Phaser.Scene {
 
         this.CreateDisplay(mp);
         this.cameras.main.setScroll(-100,-100);
-        this.inst.CreateCommands(this.md.Instructions);
-       
+        this.inst.CreateAll(this.md);
+
+        // let title = this.add.bitmapText(350,20,'5px', this.md.name).setScale(5).setScrollFactor(0,0).setOrigin(.5).setMaxWidth(700);
+        // title.setPosition(350, 10);
     }
 
     CreateDisplay(mp:LDtkMapPack) {
@@ -61,10 +64,12 @@ export class GameScene extends Phaser.Scene {
 
         let endTile = this.TileArray.find(t=>t.x == this.md.end.x && t.y == this.md.end.y);
         endTile.SetTileType(TileType.End);
-        let startTile = this.TileArray.find(t=>t.x == this.md.player.x && t.y == this.md.player.y);
-        let r = new Robot(this);
-        r.SetStartPosition(startTile.x, startTile.y, this.md.player.startDir );
-        this.midLayer.add(r.s);
+
+        this.md.GoBots.forEach(gb=>{
+            let r = new Robot(this);
+            r.SetStartPosition(gb.x, gb.y, gb.d);
+            this.midLayer.add(r.s);
+        });
 
 
         

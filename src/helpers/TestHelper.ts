@@ -45,7 +45,7 @@ export class TestHelper {
             r.steps++;
             if(currentinst.length == 0)
             currentinst = [...inst];
-            md.Step(currentinst.shift());
+            md.Step();
             if(md.complete)
                 r.success = true;
         }
