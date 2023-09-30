@@ -64,6 +64,7 @@ export class Preload extends Phaser.Scene {
     
         this.load.setBaseURL('./assets/')
         this.load.image('mapts', ['tiles.png', 'tiles_n.png']);
+        this.load.image('tile', 'tile.png');
         this.load.json('levels', 'AllLevels.ldtk');
         this.load.bitmapFont('6px', 'munro_0.png', 'munro.fnt');
         this.load.bitmapFont('8px', '8ptfont_0.png', '8ptfont.fnt');
