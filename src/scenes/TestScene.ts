@@ -6,7 +6,7 @@ import { LdtkReader } from "../map/LDtkReader";
 export class TestScene extends Phaser.Scene {
     create() {
         let r = new LdtkReader(this, this.cache.json.get('levels'));
-        let mp = r.CreateMap('Level_2', 'tile');
+        let mp = r.CreateMap('Level_1', 'tile');
 
         let md = MapHelper.LoadMap(mp);
 
@@ -23,6 +23,7 @@ export class TestScene extends Phaser.Scene {
         let success = allResults.filter(e=>e.success);
         console.log(`Total solutions found : ${success.length}`);
 
+        success.sort((a:TestResults,b:TestResults)=>a.steps - b.steps)
         success.forEach(element => {
             console.log(`${element.instructions} : ${element.steps} Steps.`);
         });

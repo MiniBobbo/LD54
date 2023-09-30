@@ -10,7 +10,7 @@ export class EntityModel {
 
     private startX:number;
     private startY:number;
-    private startDir:Direction;
+    startDir:Direction;
 
     constructor(x:number, y:number, dir:Direction, map:MapData) {
         this.x = x;

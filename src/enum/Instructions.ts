@@ -6,3 +6,4 @@ export enum Instructions {
     Sub1 = 4,
     Sub2 = 5
 }
+

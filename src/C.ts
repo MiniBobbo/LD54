@@ -1,11 +1,13 @@
 import { GameData } from "./GameData";
+import { Instructions } from "./enum/Instructions";
 
 export class C {
     static currentLevel:string = 'Level_0';
     static previouslevel:string = 'start';
     static waypoint:string = '';
 
-    static TILE_SIZE:number = 16;
+    static TILE_SIZE_X:number = 60;
+    static TILE_SIZE_Y:number = 46;
     static GRAVITY:number = 1000;
     // static GRAVITY:number = 1000;
     static MAX_Y_SPEED:number = 500;
@@ -32,8 +34,8 @@ export class C {
     static RoundToTile(x:number, y:number):{x:number, y:number} {
         let newX = 0;
         let newY = 0;
-        newX = Math.floor(x/C.TILE_SIZE) * C.TILE_SIZE;
-        newY = Math.floor(y/C.TILE_SIZE) * C.TILE_SIZE;
+        newX = Math.floor(x/C.TILE_SIZE_X) * C.TILE_SIZE_Y;
+        newY = Math.floor(y/C.TILE_SIZE_X) * C.TILE_SIZE_Y;
         return {x:newX, y:newY};
     }
 
@@ -44,5 +46,20 @@ export class C {
     static setFlag(flag:string, value:boolean) {
         //@ts-ignore
         this.gd.flags[flag] = value;
+    }
+
+    static InstructionToString(i:Instructions):string {
+        switch (i) {
+            case Instructions.Right:
+                return 'Instructions_Right_0';
+            case Instructions.Left:
+                return 'Instructions_Left_0';
+            case Instructions.Forward:
+                return 'Instructions_Forward_0';
+        
+            default:
+                break;
+        }
+
     }
 }

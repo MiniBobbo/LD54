@@ -9,28 +9,6 @@ export class TestHelper {
 
 
     /**
-     * Generate a list of all possible instructions for a given length.  This uses recursion and is scary. 
-     * @param length The length of the list to generate.
-     * @param currentList Recursive.
-     * @param results Recursive.
-     * @returns Recursive.
-     */
-    // static generateInstructionLists(length: number, currentList: number[] = [], results: number[][] = []): number[][] {
-    //     if (currentList.length === length) {
-    //         results.push([...currentList]);
-    //         return results;
-    //     }
-    
-    //     for (let i = 0; i < 4; i++) {
-    //         currentList.push(i);
-    //         this.generateInstructionLists(length, currentList, results);
-    //         currentList.pop(); // Remove the last element for backtracking
-    //     }
-    
-    //     return results;
-    // }
-
-    /**
      * Generate a list of all possible instructions for a given length and steps.  This uses recursion and is scary. 
      * @param steps An array of steps to include.  So [0,1,3] will not include step 2 in the list.
      * @param length How long the instructions are allowed to be.  So 3 would generate [0,0,0] to [3,3,3] given steps [0,3]

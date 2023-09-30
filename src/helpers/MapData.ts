@@ -11,6 +11,9 @@ export class MapData {
     MemCount:number = 3;
     Sub1:number = 0;
     Sub2:number = 0;
+    Instructions:Instructions[] = [];
+
+
 
 
     Step(i:Instructions) {
