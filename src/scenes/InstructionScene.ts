@@ -8,7 +8,7 @@ import { MapData } from "../helpers/MapData";
 export class InstructionScene extends Phaser.Scene {
     selctImage:Phaser.GameObjects.Image;
 
-    StartCommandLocation = {x:40, y:70};
+    StartCommandLocation = {x:40, y:60};
 
     SelectedInstruction:Instructions;
 
@@ -21,8 +21,14 @@ export class InstructionScene extends Phaser.Scene {
     create() {
         this.cameras.main
         .setSize(300,700)
-        .setBackgroundColor(0x494d7eff)
+        // .setBackgroundColor(0x494d7eff)
         .setPosition(700,0);
+        let g = this.add.graphics();
+        g.fillStyle(0x000000, .5);
+        this.add.nineslice(5,5,'atlas', 'CyberTile_3', 290, 690, 10,10,10,10)
+        .setOrigin(0,0).setDepth(1)
+        .postFX.addBloom(0xffffff,1,1,1,2);
+        ;
 
         // this.add.image(30,60, 'atlas', 'Instructions_Forward_0');
         // this.add.image(90,60, 'atlas', 'Instructions_Left_0');
@@ -32,7 +38,7 @@ export class InstructionScene extends Phaser.Scene {
 
 
         this.add.bitmapText(10,0, '5px', 'Commands').setScale(4);
-        this.debug = this.add.bitmapText(10,750, '5px', 'debug').setScale(4);
+        this.debug = this.add.bitmapText(10,400, '5px', '').setScale(2);
 
         this.cameras.main.postFX.addBloom(0xffffff, 1,1,1,2);
 
@@ -78,7 +84,9 @@ export class InstructionScene extends Phaser.Scene {
     update(time: number, delta: number): void {
         // let p = this.input.activePointer.worldX
         // this.cameras.main.getWorldPoint();
-        this.selctImage.setPosition(this.input.activePointer.worldX - 700, this.input.activePointer.worldY);
+        this.input.activePointer.updateWorldPoint(this.cameras.main);
+        this.selctImage.setPosition(this.input.activePointer.worldX, this.input.activePointer.worldY);
+        // this.debug.setText(`${this.selctImage.x}, ${this.selctImage.y}`);
     }
 
     CreateAll(md:MapData) {
@@ -95,21 +103,21 @@ export class InstructionScene extends Phaser.Scene {
         })
     }
 
-
     private CreateCommands(instructions:number[]) {
         for (let index = 0; index < instructions.length; index++) {
         let c1 = new Command(this);
-        c1.SetCommand(this.StartCommandLocation.x + 60*index,this.StartCommandLocation.y, instructions[index]);
+        let x = (index%4) * 70;
+        let y = (Math.floor(index/4) * 70)  
+
+        c1.SetCommand(this.StartCommandLocation.x + x,this.StartCommandLocation.y + y, instructions[index]);
 
         }
     }
 
     private CreateInputs(name:string, count:number) {
             let i = new RobotInputs(name, this, count);
-            i.c.setPosition(10, 130);
+            i.c.setPosition(10, 160);
             this.RobotInp.push(i);
     }
-
-    
 }
 

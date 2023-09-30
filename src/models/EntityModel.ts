@@ -40,6 +40,9 @@ export class EntityModel {
             case Instructions.Right:
                 this.Right();
                 break;
+            case Instructions.Jump:
+                this.Jump();
+                break;
             default:
                 break;
         }
@@ -57,26 +60,62 @@ export class EntityModel {
             this.d = 3;
     }
 
+    Jump() {
+        let c = this.map.tiles;
+        switch (this.d) {
+            case Direction.North:
+                if(this.GetTileIndex(c, this.x, this.y-2) == 1) {
+                    this.y-=2;
+                }
+                break;
+            case Direction.South:
+                if(this.GetTileIndex(c, this.x, this.y+2) == 1) {
+                    this.y+=2;
+                }
+                break;
+            case Direction.East:
+                if(this.GetTileIndex(c, this.x+2, this.y) == 1) {
+                    this.x+=2;
+                }
+                break;
+            case Direction.West:
+                if(this.GetTileIndex(c, this.x-2, this.y) == 1) {
+                    this.x-=2;
+                }
+                break;
+        
+            default:
+                break;
+        }
+
+    }
+
+    GetTileIndex(c:Phaser.Tilemaps.TilemapLayer, x:number,y:number):number {
+        if(x < 0 || x >= c.layer.width || y < 0 || y >= c.layer.height)
+            return -1;
+        return c.getTileAt(this.x-1, this.y , true).index;
+    }
+
     Forward() {
         let c = this.map.tiles;
         switch (this.d) {
             case Direction.North:
-                if(c.getTileAt(this.x, this.y-1, true).index == 1) {
+                if(this.GetTileIndex(c, this.x, this.y-1) == 1) {
                     this.y--;
                 }
                 break;
             case Direction.East:
-                if(c.getTileAt(this.x + 1, this.y, true).index == 1) {
+                if(this.GetTileIndex(c, this.x+1, this.y) == 1) {
                     this.x++;
                 }
                 break;
             case Direction.South:
-                if(c.getTileAt(this.x, this.y + 1, true).index == 1) {
+                if(this.GetTileIndex(c, this.x, this.y+1) == 1) {
                     this.y++;
                 }
                 break;
             case Direction.West:
-                if(c.getTileAt(this.x-1, this.y , true).index == 1) {
+                if(this.GetTileIndex(c, this.x-1, this.y) == 1) {
                     this.x--;
                 }
                 break;

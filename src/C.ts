@@ -2,7 +2,7 @@ import { GameData } from "./GameData";
 import { Instructions } from "./enum/Instructions";
 
 export class C {
-    static currentLevel:string = 'Level_4';
+    static currentLevel:string = 'Level_5';
     static previouslevel:string = 'start';
     static waypoint:string = '';
 
@@ -42,6 +42,10 @@ export class C {
                 return 'Instructions_Left_0';
             case Instructions.Forward:
                 return 'Instructions_Forward_0';
+            case Instructions.Wait:
+                return 'Instructions_Wait_0';
+            case Instructions.Jump:
+                return 'Instructions_Jump_0';
             case 0:
                 return 'CyberTile_4';
             default:

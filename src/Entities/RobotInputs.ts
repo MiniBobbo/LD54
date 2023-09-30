@@ -17,7 +17,7 @@ export class RobotInputs {
 
         for (let index = 0; index < count; index++) {
             let x = 30 + (index%4) * 70;
-            let y = 70 + (Math.floor(index/4) * 80)  
+            let y = 60 + (Math.floor(index/4) * 80)  
             let ib = new InputBox(this.scene);
             ib.s.setPosition(x, y);
             this.c.add(ib.s);

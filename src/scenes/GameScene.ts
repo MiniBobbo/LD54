@@ -47,7 +47,7 @@ export class GameScene extends Phaser.Scene {
         this.md.SetEmitter(this.events);
 
         this.CreateDisplay(mp);
-        this.cameras.main.setScroll(0,-40);
+        this.cameras.main.setScroll(-40,-80);
         this.inst.CreateAll(this.md);
 
 

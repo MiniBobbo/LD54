@@ -3,7 +3,9 @@ export enum Instructions {
     Forward = 1,
     Left = 2,
     Right = 3,
-    Sub1 = 4,
-    Sub2 = 5
+    Wait = 4,
+    Jump = 5,
+    // Sub1 = 4,
+    // Sub2 = 5
 }
 

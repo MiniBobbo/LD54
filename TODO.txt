@@ -1,0 +1,17 @@
+Ideas:
+Different Robot Types
+Robots collide
+Subroutines
+Wait Instructions
+Remove Nothing orders from instruction lists
+
+Polish:
+Animations
+Music
+Main Menu
+Screen Transitions
+Robots teleport when complete
+
+Bugs:
+Playing after the success. (How should this work?)
+- Drag and drop disappears over icons for some reason. 
