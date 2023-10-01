@@ -13,6 +13,7 @@ Main Menu
 Screen Transitions
 Robots teleport when complete
 - Starting Creation Juice
+- Add Reset button to Instructions scene
 
 SFX:
 Teleport
@@ -24,3 +25,4 @@ Select
 Bugs:
 Playing after the success. (How should this work?)
 - Drag and drop disappears over icons for some reason. 
+Bots don't teleport when reaching goal and still Twitch.

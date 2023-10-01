@@ -11,7 +11,7 @@
 	"iid": "4df56940-3b70-11ee-acc8-196ee84d6a89",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 36,
+	"nextUid": 39,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "LinearHorizontal",
@@ -278,6 +278,79 @@
 					"doc": null,
 					"__type": "LocalEnum.Direction",
 					"uid": 10,
+					"type": "F_Enum(3)",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["North"]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
+		},
+		{
+			"identifier": "ZoomBot",
+			"uid": 36,
+			"tags": [],
+			"exportToToc": false,
+			"doc": null,
+			"width": 80,
+			"height": 80,
+			"resizableX": false,
+			"resizableY": false,
+			"minWidth": null,
+			"maxWidth": null,
+			"minHeight": null,
+			"maxHeight": null,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#124E89",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"uiTileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0,
+			"pivotY": 0,
+			"fieldDefs": [
+				{
+					"identifier": "Direction",
+					"doc": null,
+					"__type": "LocalEnum.Direction",
+					"uid": 37,
 					"type": "F_Enum(3)",
 					"isArray": false,
 					"canBeNull": false,
@@ -929,9 +1002,9 @@
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
-				{ "__identifier": "LevelName", "__type": "String", "__value": "Square", "__tile": null, "defUid": 2, "realEditorValues": [{
+				{ "__identifier": "LevelName", "__type": "String", "__value": "Multibot", "__tile": null, "defUid": 2, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["Square"]
+					"params": ["Multibot"]
 				}] },
 				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right", "Wait", "Jump" ], "__tile": null, "defUid": 25, "realEditorValues": [ null, {
 					"id": "V_String",
@@ -1441,9 +1514,9 @@
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
-				{ "__identifier": "LevelName", "__type": "String", "__value": "Square", "__tile": null, "defUid": 2, "realEditorValues": [{
+				{ "__identifier": "LevelName", "__type": "String", "__value": "Big Square", "__tile": null, "defUid": 2, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["Square"]
+					"params": ["Big Square"]
 				}] },
 				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right" ], "__tile": null, "defUid": 25, "realEditorValues": [ null, {
 					"id": "V_String",
@@ -1692,24 +1765,36 @@
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
-				{ "__identifier": "LevelName", "__type": "String", "__value": "Jumping", "__tile": null, "defUid": 2, "realEditorValues": [{
+				{ "__identifier": "LevelName", "__type": "String", "__value": "ZoomBots and GoBots", "__tile": null, "defUid": 2, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["Jumping"]
+					"params": ["ZoomBots and GoBots"]
 				}] },
-				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": ["Forward"], "__tile": null, "defUid": 25, "realEditorValues": [{
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right", "Jump" ], "__tile": null, "defUid": 25, "realEditorValues": [ {
 					"id": "V_String",
 					"params": ["Forward"]
-				}] },
-				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["GoBot"], "__tile": null, "defUid": 27, "realEditorValues": [{
+				}, {
+					"id": "V_String",
+					"params": ["Left"]
+				}, {
+					"id": "V_String",
+					"params": ["Right"]
+				}, {
+					"id": "V_String",
+					"params": ["Jump"]
+				} ] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": [ "GoBot", "ZoomBot" ], "__tile": null, "defUid": 27, "realEditorValues": [ {
 					"id": "V_String",
 					"params": ["GoBot"]
-				}] },
+				}, {
+					"id": "V_String",
+					"params": ["ZoomBot"]
+				} ] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
 				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Easy", "__tile": null, "defUid": 33, "realEditorValues": [{
 					"id": "V_String",
 					"params": ["Easy"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }
 			],
 			"layerInstances": [
 				{
@@ -1732,14 +1817,24 @@
 					"optionalRules": [],
 					"intGridCsv": [],
 					"autoLayerTiles": [
+						{ "px": [240,400], "src": [0,0], "f": 0, "t": 0, "d": [21,58], "a": 1 },
+						{ "px": [320,400], "src": [0,0], "f": 0, "t": 0, "d": [21,59], "a": 1 },
 						{ "px": [400,400], "src": [0,0], "f": 0, "t": 0, "d": [21,60], "a": 1 },
-						{ "px": [160,480], "src": [0,0], "f": 0, "t": 0, "d": [21,68], "a": 1 },
+						{ "px": [640,400], "src": [0,0], "f": 0, "t": 0, "d": [21,63], "a": 1 },
 						{ "px": [240,480], "src": [0,0], "f": 0, "t": 0, "d": [21,69], "a": 1 },
 						{ "px": [320,480], "src": [0,0], "f": 0, "t": 0, "d": [21,70], "a": 1 },
 						{ "px": [400,480], "src": [0,0], "f": 0, "t": 0, "d": [21,71], "a": 1 },
-						{ "px": [480,480], "src": [0,0], "f": 0, "t": 0, "d": [21,72], "a": 1 },
-						{ "px": [560,480], "src": [0,0], "f": 0, "t": 0, "d": [21,73], "a": 1 },
-						{ "px": [640,480], "src": [0,0], "f": 0, "t": 0, "d": [21,74], "a": 1 }
+						{ "px": [640,480], "src": [0,0], "f": 0, "t": 0, "d": [21,74], "a": 1 },
+						{ "px": [240,560], "src": [0,0], "f": 0, "t": 0, "d": [21,80], "a": 1 },
+						{ "px": [320,560], "src": [0,0], "f": 0, "t": 0, "d": [21,81], "a": 1 },
+						{ "px": [400,560], "src": [0,0], "f": 0, "t": 0, "d": [21,82], "a": 1 },
+						{ "px": [640,560], "src": [0,0], "f": 0, "t": 0, "d": [21,85], "a": 1 },
+						{ "px": [240,640], "src": [0,0], "f": 0, "t": 0, "d": [21,91], "a": 1 },
+						{ "px": [320,640], "src": [0,0], "f": 0, "t": 0, "d": [21,92], "a": 1 },
+						{ "px": [400,640], "src": [0,0], "f": 0, "t": 0, "d": [21,93], "a": 1 },
+						{ "px": [480,640], "src": [0,0], "f": 0, "t": 0, "d": [21,94], "a": 1 },
+						{ "px": [560,640], "src": [0,0], "f": 0, "t": 0, "d": [21,95], "a": 1 },
+						{ "px": [640,640], "src": [0,0], "f": 0, "t": 0, "d": [21,96], "a": 1 }
 					],
 					"seed": 1196673,
 					"overrideTilesetUid": null,
@@ -1788,40 +1883,40 @@
 						},
 						{
 							"__identifier": "GoBot",
-							"__grid": [6,6],
+							"__grid": [3,6],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"__worldX": 5120,
-							"__worldY": 480,
-							"iid": "e811ca10-3b70-11ee-b63b-9747fdd54da8",
-							"width": 80,
-							"height": 80,
-							"defUid": 4,
-							"px": [480,480],
-							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "West", "__tile": null, "defUid": 5, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["West"]
-							}] }]
-						},
-						{
-							"__identifier": "GoBot",
-							"__grid": [4,6],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"__worldX": 4960,
+							"__worldX": 4880,
 							"__worldY": 480,
 							"iid": "ded77700-3b70-11ee-b63b-ed29c5270a86",
 							"width": 80,
 							"height": 80,
 							"defUid": 4,
-							"px": [320,480],
+							"px": [240,480],
 							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "East", "__tile": null, "defUid": 5, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["East"]
+							}] }]
+						},
+						{
+							"__identifier": "ZoomBot",
+							"__grid": [8,5],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#124E89",
+							"__worldX": 5280,
+							"__worldY": 400,
+							"iid": "3dde44a0-3b70-11ee-b63b-9f8fc259c873",
+							"width": 80,
+							"height": 80,
+							"defUid": 36,
+							"px": [640,400],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "South", "__tile": null, "defUid": 37, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["South"]
 							}] }]
 						}
 					]
@@ -1846,8 +1941,231 @@
 					"optionalRules": [],
 					"intGridCsv": [
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,
-						1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,1,
+						1,1,0,0,1,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0
+					],
+					"autoLayerTiles": [],
+					"seed": 6669177,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": []
+		},
+		{
+			"identifier": "Level_6",
+			"iid": "426d6ce0-3b70-11ee-b63b-8baab09baa9b",
+			"uid": 38,
+			"worldX": -1,
+			"worldY": -1,
+			"worldDepth": 0,
+			"pxWid": 880,
+			"pxHei": 1040,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [
+				{ "__identifier": "LevelName", "__type": "String", "__value": "Paths", "__tile": null, "defUid": 2, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Paths"]
+				}] },
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right", "Jump", "Wait" ], "__tile": null, "defUid": 25, "realEditorValues": [
+					{
+						"id": "V_String",
+						"params": ["Forward"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Left"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Right"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Jump"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Wait"]
+					}
+				] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": [ "GoBot", "ZoomBot" ], "__tile": null, "defUid": 27, "realEditorValues": [ {
+					"id": "V_String",
+					"params": ["GoBot"]
+				}, {
+					"id": "V_String",
+					"params": ["ZoomBot"]
+				} ] },
+				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Medium"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+			],
+			"layerInstances": [
+				{
+					"__identifier": "Mg",
+					"__type": "AutoLayer",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 15,
+					"__tilesetRelPath": "Tiles.png",
+					"iid": "426d93f0-3b70-11ee-b63b-9923d051258e",
+					"levelId": 38,
+					"layerDefUid": 19,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [
+						{ "px": [160,240], "src": [0,0], "f": 0, "t": 0, "d": [21,35], "a": 1 },
+						{ "px": [240,240], "src": [0,0], "f": 0, "t": 0, "d": [21,36], "a": 1 },
+						{ "px": [320,240], "src": [0,0], "f": 0, "t": 0, "d": [21,37], "a": 1 },
+						{ "px": [320,320], "src": [0,0], "f": 0, "t": 0, "d": [21,48], "a": 1 },
+						{ "px": [400,320], "src": [0,0], "f": 0, "t": 0, "d": [21,49], "a": 1 },
+						{ "px": [480,320], "src": [0,0], "f": 0, "t": 0, "d": [21,50], "a": 1 },
+						{ "px": [560,320], "src": [0,0], "f": 0, "t": 0, "d": [21,51], "a": 1 },
+						{ "px": [640,320], "src": [0,0], "f": 0, "t": 0, "d": [21,52], "a": 1 },
+						{ "px": [320,400], "src": [0,0], "f": 0, "t": 0, "d": [21,59], "a": 1 },
+						{ "px": [640,400], "src": [0,0], "f": 0, "t": 0, "d": [21,63], "a": 1 },
+						{ "px": [320,480], "src": [0,0], "f": 0, "t": 0, "d": [21,70], "a": 1 },
+						{ "px": [640,480], "src": [0,0], "f": 0, "t": 0, "d": [21,74], "a": 1 },
+						{ "px": [80,560], "src": [0,0], "f": 0, "t": 0, "d": [21,78], "a": 1 },
+						{ "px": [160,560], "src": [0,0], "f": 0, "t": 0, "d": [21,79], "a": 1 },
+						{ "px": [240,560], "src": [0,0], "f": 0, "t": 0, "d": [21,80], "a": 1 },
+						{ "px": [320,560], "src": [0,0], "f": 0, "t": 0, "d": [21,81], "a": 1 },
+						{ "px": [400,560], "src": [0,0], "f": 0, "t": 0, "d": [21,82], "a": 1 },
+						{ "px": [480,560], "src": [0,0], "f": 0, "t": 0, "d": [21,83], "a": 1 },
+						{ "px": [560,560], "src": [0,0], "f": 0, "t": 0, "d": [21,84], "a": 1 },
+						{ "px": [640,560], "src": [0,0], "f": 0, "t": 0, "d": [21,85], "a": 1 },
+						{ "px": [720,560], "src": [0,0], "f": 0, "t": 0, "d": [21,86], "a": 1 },
+						{ "px": [320,640], "src": [0,0], "f": 0, "t": 0, "d": [21,92], "a": 1 }
+					],
+					"seed": 1196673,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "Entities",
+					"__type": "Entities",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "426d93f1-3b70-11ee-b63b-71d9c5e07d6e",
+					"levelId": 38,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 7280698,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "End",
+							"__grid": [3,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#265C42",
+							"__worldX": 5808,
+							"__worldY": 560,
+							"iid": "426d93f2-3b70-11ee-b63b-4732f935d753",
+							"width": 80,
+							"height": 80,
+							"defUid": 8,
+							"px": [240,560],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 10, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "GoBot",
+							"__grid": [2,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"__worldX": 5728,
+							"__worldY": 240,
+							"iid": "426d93f3-3b70-11ee-b63b-8d5e3e8757c3",
+							"width": 80,
+							"height": 80,
+							"defUid": 4,
+							"px": [160,240],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "East", "__tile": null, "defUid": 5, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["East"]
+							}] }]
+						},
+						{
+							"__identifier": "ZoomBot",
+							"__grid": [8,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#124E89",
+							"__worldX": 6208,
+							"__worldY": 320,
+							"iid": "426d93f4-3b70-11ee-b63b-67f650b8cabd",
+							"width": 80,
+							"height": 80,
+							"defUid": 36,
+							"px": [640,320],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "West", "__tile": null, "defUid": 37, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["West"]
+							}] }]
+						}
+					]
+				},
+				{
+					"__identifier": "Layout",
+					"__type": "IntGrid",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "426d93f5-3b70-11ee-b63b-ef00788f06ba",
+					"levelId": 38,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,
+						1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0
 					],

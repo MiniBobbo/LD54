@@ -7,6 +7,7 @@ import { SceneEvents } from "../events/SceneEvents";
 import { Layer } from "../map/LDtkReader";
 import { EntityModel } from "../models/EntityModel";
 import { GoBotModel } from "../models/GoBotModel";
+import { ZoomBotModel } from "../models/ZoomBotModel";
 
 export class MapData {
     name:string= '';
@@ -14,6 +15,7 @@ export class MapData {
     tiles:Phaser.Tilemaps.TilemapLayer;
     AllBots:EntityModel[] = [];
     GoBots:GoBotModel[] = [];
+    ZoomBots:ZoomBotModel[] = [];
     end:EntityModel;
     MemCount:number = 3;
     Sub1:number = 0;
@@ -24,6 +26,15 @@ export class MapData {
     GoBotInstructions:Instructions[] = [];
     private fullGoBotInstructions:Instructions[] = [];
     private currentGoBotStep:number = 0;
+    ZoomBotInstructionsAllowed:number = 0;
+    ZoomBotInstructions:Instructions[] = [];
+    private fullZoomBotInstructions:Instructions[] = [];
+    private currentZoomBotStep:number = 0;
+    Sub1InstructionsAllowed:number = 0;
+    Sub1Instructions:Instructions[] = [];
+    private fullSub1Instructions:Instructions[] = [];
+    private currentSub1Step:number = 0;
+
     ElapsedSteps = 0;
     Status:MapDataStatus = MapDataStatus.INITIAL;
 
@@ -37,12 +48,9 @@ export class MapData {
 
     Prepare() {
         this.fullGoBotInstructions = this.GenerateFullInstructionSet(this.GoBotInstructions);
+        this.fullZoomBotInstructions = this.GenerateFullInstructionSet(this.ZoomBotInstructions);
         this.currentGoBotStep = 0;
         this.ElapsedSteps = 0;
-        this.AllBots.forEach(element => {
-            element.Reset();
-        });
-
         this.Status = MapDataStatus.READY;
         this.Reset();
     }
@@ -56,22 +64,15 @@ export class MapData {
         this.Status = MapDataStatus.RUNNING;
         //The basic process is a PreStep check, a Step, and then a PostStep check.  
         //Not sure I need a prestep...
-        let nextGoBotInstruction:Instructions = this.fullGoBotInstructions[this.currentGoBotStep];
-        this.currentGoBotStep++;
-        //If this is the end of the instructions loop back around to the beginning.
-        if(this.currentGoBotStep >= this.fullGoBotInstructions.length)
-            this.currentGoBotStep = 0;
 
-        //Run the GoBot instructions an all the GoBots.
-        this.GoBots.forEach(gb => {
-            gb.Step(nextGoBotInstruction);
-        });
-
-        //Run the GoBot post checks.  Check for overlaps, stepping on teleporters, etc.
-        this.GoBots.forEach(gb => {
-            if(gb.x == this.end.x && gb.y == this.end.y)
-                gb.Success();
-        });
+        //Check GoBots
+        if(this.fullGoBotInstructions.length > 0)
+            this.GoBotStepInstruction();
+        
+        //Check ZoomBots
+        if(this.fullZoomBotInstructions.length > 0)
+            this.ZoomBotStepInstruction();
+        
 
         //Check for collisions between all the bots.  
         for (let first = 0; first < this.AllBots.length-1; first++) {
@@ -95,14 +96,52 @@ export class MapData {
 
     }
 
+    GoBotStepInstruction() {
+        let nextGoBotInstruction:Instructions = this.fullGoBotInstructions[this.currentGoBotStep];
+        this.currentGoBotStep++;
+        //If this is the end of the instructions loop back around to the beginning.
+        if(this.currentGoBotStep >= this.fullGoBotInstructions.length)
+            this.currentGoBotStep = 0;
+
+        //Run the GoBot instructions an all the GoBots.
+        this.GoBots.forEach(gb => {
+            gb.Step(nextGoBotInstruction);
+        });
+
+        //Run the GoBot post checks.  Check for overlaps, stepping on teleporters, etc.
+        this.GoBots.forEach(gb => {
+            if(gb.x == this.end.x && gb.y == this.end.y)
+                gb.Success();
+        });
+
+    }
+    ZoomBotStepInstruction() {
+        let nextZoomBotInstruction:Instructions = this.fullZoomBotInstructions[this.currentZoomBotStep];
+        this.currentZoomBotStep++;
+        //If this is the end of the instructions loop back around to the beginning.
+        if(this.currentZoomBotStep >= this.fullZoomBotInstructions.length)
+            this.currentZoomBotStep = 0;
+
+        //Run the ZoomBot instructions an all the ZoomBots.
+        this.ZoomBots.forEach(gb => {
+            gb.Step(nextZoomBotInstruction);
+        });
+
+        //Run the ZoomBot post checks.  Check for overlaps, stepping on teleporters, etc.
+        this.ZoomBots.forEach(gb => {
+            if(gb.x == this.end.x && gb.y == this.end.y)
+                gb.Success();
+        });
+
+    }
+
     SetEmitter(emitter:Phaser.Events.EventEmitter) {
         this.emitter = emitter;
     }
 
     Reset() {
-        this.GoBots.forEach(element => {
+        this.AllBots.forEach(element => {
             element.Reset();
-            
         });
         this.complete = false;
         this.ElapsedSteps = 0;
@@ -125,9 +164,13 @@ export class MapData {
      * Builds an instruction list.  Includes subroutines.  
      * @returns Full instruction list.
      */
-    private GenerateFullInstructionSet(partial:Instructions[]):Instructions[] {
-        let full:Instructions[] = [];
+    private GenerateFullInstructionSet(partial?:Instructions[]):Instructions[] {
+
+        if(partial == null)
+        partial = [];
         //TODO: Subroutines.
+
+
 
         return [...partial];
     }

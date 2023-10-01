@@ -8,10 +8,11 @@ export class Robot {
     startY:number;
     startD:Direction;
     ID:number = 0;
+    prefix:string = 'Robot2';
 
     constructor(scene:Phaser.Scene, ID:number) {
         this.scene = scene;
-        this.s = scene.add.sprite(0,0,'atlas', 'Robot2_North_0').setOrigin(.5,1).setVisible(false).setScale(0,3);
+        this.s = scene.add.sprite(0,0,'atlas', `${this.prefix}_North_0`).setOrigin(.5,1).setVisible(false).setScale(0,3);
         this.scene.time.addEvent({
             delay:5000,
             callback:this.Appear,
@@ -76,16 +77,16 @@ export class Robot {
     SetDirection(d:Direction) {
         switch (d) {
             case Direction.North:
-                this.s.setFrame('Robot2_North_0');
+                this.s.setFrame(`${this.prefix}_North_0`);
                 break;
             case Direction.East:
-                this.s.setFrame('Robot2_East_0');
+                this.s.setFrame(`${this.prefix}_East_0`);
                 break;
             case Direction.South:
-                this.s.setFrame('Robot2_South_0');
+                this.s.setFrame(`${this.prefix}_South_0`);
                 break;
             case Direction.West:
-                this.s.setFrame('Robot2_West_0');
+                this.s.setFrame(`${this.prefix}_West_0`);
                 break;
             default:
                 break;

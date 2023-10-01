@@ -18,6 +18,8 @@ export class InstructionScene extends Phaser.Scene {
 
     debug:Phaser.GameObjects.BitmapText;
 
+    goText:Phaser.GameObjects.BitmapText;
+
     create() {
         this.cameras.main
         .setSize(300,700)
@@ -56,15 +58,18 @@ export class InstructionScene extends Phaser.Scene {
         // c3.SetCommand(150,70, Instructions.Right);
 
         
-        let go = this.add.nineslice(10,600, 'atlas', 'CyberTile_3', 280, 60, 10,10,10,10)
+        let go = this.add.nineslice(10,550, 'atlas', 'CyberTile_3', 280, 75, 10,10,10,10)
         .setOrigin(0,0)
         .setTint(0x54ec36)
         .setInteractive();
-        this.add.bitmapText(150, go.y + 25, '5px', 'GO').setMaxWidth(280).setOrigin(.5).setScale(4);
-
-
-
+        this.goText = this.add.bitmapText(150, go.y + 25, '5px', 'GO').setMaxWidth(280).setOrigin(.5).setScale(4);
         go.on('pointerdown', ()=> {this.TryGo();});
+        let stop = this.add.nineslice(10,625, 'atlas', 'CyberTile_3', 280, 50, 10,10,10,10)
+        .setOrigin(0,0)
+        .setTint(0xff0000)
+        .setInteractive();
+        this.add.bitmapText(150, stop.y + 25, '5px', 'RESET').setMaxWidth(280).setOrigin(.5).setScale(4);
+        stop.on('pointerdown', ()=> {this.Reset();});
     }
 
     SetEmitter(e:Phaser.Events.EventEmitter) {
@@ -91,10 +96,16 @@ export class InstructionScene extends Phaser.Scene {
 
     CreateAll(md:MapData) {
         this.CreateCommands(md.Commands);
+        let offset = 0;
         md.InputsAllowed.forEach(element =>{
             switch (element) {
                 case 'GoBot':
-                    this.CreateInputs('GoBot', md.GoBotInstructionsAllowed);
+                    this.CreateInputs('GoBot', md.GoBotInstructionsAllowed, offset);
+                    offset++;
+                    break;
+                case 'ZoomBot':
+                    this.CreateInputs('ZoomBot', md.ZoomBotInstructionsAllowed, offset);
+                    offset++;
                     break;
             
                 default:
@@ -114,9 +125,9 @@ export class InstructionScene extends Phaser.Scene {
         }
     }
 
-    private CreateInputs(name:string, count:number) {
+    private CreateInputs(name:string, count:number, offsetCount:number = 0) {
             let i = new RobotInputs(name, this, count);
-            i.c.setPosition(10, 160);
+            i.c.setPosition(10, 160 + 100*offsetCount);
             this.RobotInp.push(i);
     }
 }

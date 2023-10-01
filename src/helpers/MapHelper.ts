@@ -2,6 +2,7 @@ import { Instructions } from "../enum/Instructions";
 import { LDtkMapPack } from "../map/LDtkReader";
 import { Direction, EntityModel } from "../models/EntityModel";
 import { GoBotModel } from "../models/GoBotModel";
+import { ZoomBotModel } from "../models/ZoomBotModel";
 import { MapData } from "./MapData";
 
 export class MapHelper {
@@ -14,6 +15,13 @@ export class MapHelper {
             let gb = new GoBotModel(element.__grid[0], element.__grid[1], Direction[dir], md);
             md.GoBots.push(gb);
             md.AllBots.push(gb);
+        });
+        let zoomBots = map.entityLayers.entityInstances.filter(e=>e.__identifier == 'ZoomBot');
+        zoomBots.forEach(element => {
+            let dir = element.fieldInstances[0].__value;
+            let zb = new ZoomBotModel(element.__grid[0], element.__grid[1], Direction[dir], md);
+            md.ZoomBots.push(zb);
+            md.AllBots.push(zb);
         });
         // md.player = new EntityModel(player.__grid[0], player.__grid[1], Direction[dir], md);
         let end = map.entityLayers.entityInstances.find(e=>e.__identifier == 'End');
@@ -28,6 +36,7 @@ export class MapHelper {
             md.InputsAllowed.push(element);
         });
         md.GoBotInstructionsAllowed = map.level.fieldInstances[3].__value;
+        md.ZoomBotInstructionsAllowed = map.level.fieldInstances[5].__value;
 
         return md;
     }

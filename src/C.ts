@@ -2,7 +2,7 @@ import { GameData } from "./GameData";
 import { Instructions } from "./enum/Instructions";
 
 export class C {
-    static currentLevel:string = 'Level_0';
+    static currentLevel:string = 'Level_4';
     static previouslevel:string = 'start';
     static waypoint:string = '';
 

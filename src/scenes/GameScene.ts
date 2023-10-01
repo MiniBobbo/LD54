@@ -81,6 +81,7 @@ export class GameScene extends Phaser.Scene {
 
     Success() {
         this.status = PlayState.Finished;
+        // this.events.emit();
         
         this.groundLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
         this.midLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
@@ -139,6 +140,18 @@ export class GameScene extends Phaser.Scene {
             this.midLayer.add(r.s);
             this.robots.push(r);
         });
+        this.md.ZoomBots.forEach(gb=>{
+            let r = new Robot(this, gb.ID);
+            r.prefix = 'ZoomBot';
+            this.time.addEvent({
+                delay:1000,
+                callbackScope:this,
+                callback:()=>{r.SetStartPosition(gb.x, gb.y, gb.d);
+                }
+            });
+            this.midLayer.add(r.s);
+            this.robots.push(r);
+        });
     }
 
     update(time: number, delta: number): void {
@@ -157,6 +170,10 @@ export class GameScene extends Phaser.Scene {
         let gbi = this.inst.RobotInp.find(i=>i.Name == 'GoBot');
         if(gbi != null)
             this.md.GoBotInstructions = gbi.GetInstructions();
+        //Find the ZoomBot instructions.
+        let zbi = this.inst.RobotInp.find(i=>i.Name == 'ZoomBot');
+        if(zbi != null)
+            this.md.ZoomBotInstructions = zbi.GetInstructions();
 
         this.md.Prepare();
         this.currentDelay = this.nextDelay;
