@@ -5,13 +5,14 @@ Todo:
 - Wait Instructions
 - Remove Nothing orders from instruction lists
 - Jump
-Next Level button on complete
-Reset Level button on complete
+- Next Level button on complete
+- Reset Level button on complete
 - Save high scores
 - Display Complete and High Scores on the Menu
 - Don't allow subroutines to call subroutines
 - Music
 - SFX
+Fix Main Menu
 
 
 

@@ -8,6 +8,7 @@ import { Layer } from "../map/LDtkReader";
 import { EntityModel } from "../models/EntityModel";
 import { GoBotModel } from "../models/GoBotModel";
 import { ZoomBotModel } from "../models/ZoomBotModel";
+import { SFX } from "./SoundManager";
 
 export class MapData {
     name:string= '';
@@ -82,6 +83,7 @@ export class MapData {
                     firstBot.Destroy();
                     secondBot.Destroy();
                     this.emitter.emit(SceneEvents.EFFECT, firstBot.x * C.TILE_SIZE_X, firstBot.y * C.TILE_SIZE_Y, EffectTypes.Explode);
+                    this.emitter.emit(SceneEvents.SOUND, SFX.Explode);
                 }
             }
         }

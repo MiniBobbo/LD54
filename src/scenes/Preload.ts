@@ -68,6 +68,7 @@ export class Preload extends Phaser.Scene {
     
         this.load.setBaseURL('./assets/')
         this.load.image('tiles', 'CyberTile.png');
+        this.load.image('logo', 'LoopBots.png');
         this.load.json('levels', 'AllLevels.ldtk');
         this.load.bitmapFont('5px', '5px_0.png', '5px.fnt');
         this.load.multiatlas('atlas', 'atlas.json');

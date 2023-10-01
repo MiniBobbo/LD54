@@ -107,8 +107,8 @@ export class GameScene extends Phaser.Scene {
                 this.groundLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
                 this.midLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
                 // this.topLayer.postFX.addBlur();
-                let message = this.add.bitmapText(350, 300, '5px', 'Level Complete').setOrigin(.5).setScale(7).setMaxWidth(650);
-                let smallmessage = this.add.bitmapText(350, 375, '5px', `Program Steps: ${this.md.ElapsedSteps}`).setOrigin(.5).setScale(5).setMaxWidth(650);
+                let message = this.add.bitmapText(350, 150, '5px', 'Level Complete').setOrigin(.5).setScale(7).setMaxWidth(650);
+                let smallmessage = this.add.bitmapText(350, 200, '5px', `Program Steps: ${this.md.ElapsedSteps}`).setOrigin(.5).setScale(5).setMaxWidth(650);
         
         
                 this.topLayer.add(message);
@@ -127,10 +127,25 @@ export class GameScene extends Phaser.Scene {
                     } 
                 }
                 if(newRecord) {
-                    this.topLayer.add(this.add.bitmapText(350, 450, '5px', `NEW PERSONAL BEST\n${r.Moves} Steps`).setOrigin(.5).setScale(5).setMaxWidth(650).setCenterAlign().setTint(0xff0000));
+                    this.topLayer.add(this.add.bitmapText(350, 300, '5px', `NEW PERSONAL BEST\n${r.Moves} Steps`).setOrigin(.5).setScale(5).setMaxWidth(650).setCenterAlign().setTint(0xff0000));
         
                 }
+
+                let retry = this.add.bitmapText(150, 400, '5px', 'Retry Level').setOrigin(.5).setScale(4).setMaxWidth(650).setInteractive();
+                let next = this.add.bitmapText(500, 400, '5px', 'Next Level').setOrigin(.5).setScale(4).setMaxWidth(650).setInteractive();
+                this.topLayer.add(retry);
+                this.topLayer.add(next);
                 
+                retry.on('pointerdown', ()=>{this.scene.start('transition');});
+                next.on('pointerdown', ()=>{
+                    let nextLevel = C.LevelList.indexOf(C.currentLevel);
+                    nextLevel++;
+                    if(nextLevel >= C.LevelList.length){
+                        nextLevel = 0;
+                    }
+                    C.currentLevel = C.LevelList[nextLevel];
+                    this.scene.start('transition');
+                });
         
             }
         });

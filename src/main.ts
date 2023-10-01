@@ -7,6 +7,7 @@ import { MainMenuScene } from "./scenes/MainMenuScene";
 import { TestHelper } from "./helpers/TestHelper";
 import { TestScene } from "./scenes/TestScene";
 import { StandAloneScene } from "./scenes/StandAloneScene";
+import { TransitionScene } from "./scenes/TransitionScene";
 
 
 class Main extends Phaser.Game {
@@ -38,6 +39,7 @@ class Main extends Phaser.Game {
     this.scene.add("menu", MainMenuScene, false);
     this.scene.add("test", TestScene, false);
     this.scene.add("preload", Preload, false);
+    this.scene.add("transition", TransitionScene, false);
     // this.scene.add("game", GameScene, false);
     this.scene.start("preload");
     // C.gd = new GameData();
