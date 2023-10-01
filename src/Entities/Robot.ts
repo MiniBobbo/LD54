@@ -42,7 +42,24 @@ export class Robot {
      * @param d 
      */
     MoveTo(x:number, y:number, d:Direction) {
-
+        this.Twitch();
+        this.scene.tweens.add({
+            targets:[this.s],
+            x:x * C.TILE_SIZE_X, 
+            y:y * C.TILE_SIZE_Y,
+            duration:100,
+        });
+        this.SetDirection(d);
+    }
+    JumpTo(x:number, y:number, d:Direction) {
+        this.Twitch();
+        this.scene.tweens.add({
+            targets:[this.s],
+            x:x * C.TILE_SIZE_X, 
+            y:y * C.TILE_SIZE_Y,
+            duration:100,
+        });
+        this.SetDirection(d);
     }
 
     Twitch() {
@@ -91,6 +108,6 @@ export class Robot {
             default:
                 break;
         }
-        this.Twitch();
+        // this.Twitch();
     }
 }

@@ -59,12 +59,14 @@ export class EntityModel {
         this.d +=1;
         if(this.d > 3)
             this.d = 0;
+        this.map.emitter.emit(EntityEvents.MOVE, this.ID, this.x, this.y, this.d);
     }
 
     Left() {
         this.d -=1;
         if(this.d < 0)
             this.d = 3;
+        this.map.emitter.emit(EntityEvents.MOVE, this.ID, this.x, this.y, this.d);
     }
 
     Jump() {
@@ -73,21 +75,25 @@ export class EntityModel {
             case Direction.North:
                 if(this.GetTileIndex(c, this.x, this.y-2) == 1) {
                     this.y-=2;
+                    this.map.emitter.emit(EntityEvents.JUMP, this.ID, this.x, this.y, this.d);
                 }
                 break;
             case Direction.South:
                 if(this.GetTileIndex(c, this.x, this.y+2) == 1) {
                     this.y+=2;
+                    this.map.emitter.emit(EntityEvents.JUMP, this.ID, this.x, this.y, this.d);
                 }
                 break;
             case Direction.East:
                 if(this.GetTileIndex(c, this.x+2, this.y) == 1) {
                     this.x+=2;
+                    this.map.emitter.emit(EntityEvents.JUMP, this.ID, this.x, this.y, this.d);
                 }
                 break;
             case Direction.West:
                 if(this.GetTileIndex(c, this.x-2, this.y) == 1) {
                     this.x-=2;
+                    this.map.emitter.emit(EntityEvents.JUMP, this.ID, this.x, this.y, this.d);
                 }
                 break;
         

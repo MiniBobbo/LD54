@@ -8,7 +8,7 @@ import { MapData } from "../helpers/MapData";
 export class InstructionScene extends Phaser.Scene {
     selctImage:Phaser.GameObjects.Image;
 
-    StartCommandLocation = {x:40, y:60};
+    StartCommandLocation = {x:45, y:60};
 
     SelectedInstruction:Instructions;
 
@@ -39,8 +39,8 @@ export class InstructionScene extends Phaser.Scene {
         this.selctImage = this.add.image(0,0,'atlas', 'Instructions_Forward_0').setDepth(100).setAlpha(.5).setVisible(false);
 
 
-        this.add.bitmapText(10,0, '5px', 'Commands').setScale(4);
-        this.debug = this.add.bitmapText(10,400, '5px', '').setScale(2);
+        this.add.bitmapText(20,0, '5px', 'Commands').setScale(4);
+        // this.debug = this.add.bitmapText(10,400, '5px', '').setScale(2);
 
         this.cameras.main.postFX.addBloom(0xffffff, 1,1,1,2);
 
@@ -50,14 +50,6 @@ export class InstructionScene extends Phaser.Scene {
             this.selctImage.setVisible(false); 
             this.SelectedInstruction = Instructions.Nothing;});
 
-        // let c1 = new Command(this);
-        // c1.SetCommand(30,70, Instructions.Forward);
-        // let c2 = new Command(this);
-        // c2.SetCommand(90,70, Instructions.Left);
-        // let c3 = new Command(this);
-        // c3.SetCommand(150,70, Instructions.Right);
-
-        
         let go = this.add.nineslice(10,550, 'atlas', 'CyberTile_3', 280, 75, 10,10,10,10)
         .setOrigin(0,0)
         .setTint(0x54ec36)
@@ -127,7 +119,7 @@ export class InstructionScene extends Phaser.Scene {
 
     private CreateInputs(name:string, count:number, offsetCount:number = 0) {
             let i = new RobotInputs(name, this, count);
-            i.c.setPosition(10, 160 + 100*offsetCount);
+            i.c.setPosition(15, 160 + 100*offsetCount);
             this.RobotInp.push(i);
     }
 }

@@ -6,7 +6,7 @@ import { Instructions } from "../enum/Instructions";
 import { MapData } from "../helpers/MapData";
 import { MapHelper } from "../helpers/MapHelper";
 import { LDtkMapPack, LdtkReader } from "../map/LDtkReader";
-import { EntityModel } from "../models/EntityModel";
+import { Direction, EntityModel } from "../models/EntityModel";
 import { InstructionScene } from "./InstructionScene";
 import { SceneEvents } from "../events/SceneEvents";
 import { MapDataStatus } from "../enum/MapDataStatus";
@@ -56,12 +56,18 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.setScroll(-40,-80);
         this.inst.CreateAll(this.md);
 
+        let menu = this.add.bitmapText(5,560, '5px', 'MENU').setScale(3).setTint(0xff0000).setInteractive();
+        menu.on('pointerdown', ()=>{this.scene.start('menu');}, this);
+        this.topLayer.add(menu);
 
         this.inst.events.on(SceneEvents.GO, this.Start, this);
         this.inst.events.on(SceneEvents.RESET, this.Reset, this);
         this.events.on(SceneEvents.SUCCESS, this.Success, this);
         this.events.on(SceneEvents.FAILED, this.Fail, this);
         this.events.on(EntityEvents.DESTROYED, (id:number)=>{this.robots.find(r=>r.ID == id).s.setVisible(false)}, this);
+        this.events.on(EntityEvents.TELEPORT, (id:number)=>{this.robots.find(r=>r.ID == id).Teleport()}, this);
+        this.events.on(EntityEvents.MOVE, (id:number, x:number, y:number, d:Direction)=>{this.robots.find(r=>r.ID == id).MoveTo(x,y,d)}, this);
+        this.events.on(EntityEvents.JUMP, (id:number, x:number, y:number, d:Direction)=>{this.robots.find(r=>r.ID == id).JumpTo(x,y,d)}, this);
 
 
 
@@ -89,14 +95,14 @@ export class GameScene extends Phaser.Scene {
         let message = this.add.bitmapText(350, 300, '5px', 'Level Complete').setOrigin(.5).setScale(7).setMaxWidth(650);
         let smallmessage = this.add.bitmapText(350, 375, '5px', `Program Steps: ${this.md.ElapsedSteps}`).setOrigin(.5).setScale(5).setMaxWidth(650);
 
-        let menu = this.add.bitmapText(350, 500, '5px', 'Back to Menu').setOrigin(.5).setScale(5).setMaxWidth(650)
-        .setTint(0xff3333)
-        .setInteractive().on('pointerdown', ()=>{this.scene.start('menu');}, this);
+        // let menu = this.add.bitmapText(350, 500, '5px', 'Back to Menu').setOrigin(.5).setScale(5).setMaxWidth(650)
+        // .setTint(0xff3333)
+        // .setInteractive().on('pointerdown', ()=>{this.scene.start('menu');}, this);
         
 
         this.topLayer.add(message);
         this.topLayer.add(smallmessage);
-        this.topLayer.add(menu);
+        // this.topLayer.add(menu);
     }
 
     CreateDisplay(mp:LDtkMapPack) {
@@ -191,6 +197,8 @@ export class GameScene extends Phaser.Scene {
     Reset() {
         if(this.status != PlayState.Running)
             return;
+        this.tweens.killAll();
+        
         this.md.Reset();
         this.md.AllBots.forEach(element => {
             let r = this.robots.find(r=> r.ID == element.ID);
@@ -211,10 +219,10 @@ export class GameScene extends Phaser.Scene {
         this.currentDelay = this.nextDelay;
         this.md.Step();
         //Update the graphics.  This will be event based in the future...
-        this.md.AllBots.forEach(element => {
-            let r = this.robots.find(r=> r.ID == element.ID);
-            r.SetPosition(element.x, element.y, element.d);
-        });
+        // this.md.AllBots.forEach(element => {
+        //     let r = this.robots.find(r=> r.ID == element.ID);
+        //     r.SetPosition(element.x, element.y, element.d);
+        // });
 
         //Check if we won or lost.
         if(this.md.Status == MapDataStatus.COMPLETE) {

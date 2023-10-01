@@ -50,6 +50,7 @@ export class MapData {
         this.fullGoBotInstructions = this.GenerateFullInstructionSet(this.GoBotInstructions);
         this.fullZoomBotInstructions = this.GenerateFullInstructionSet(this.ZoomBotInstructions);
         this.currentGoBotStep = 0;
+        this.currentZoomBotStep = 0;
         this.ElapsedSteps = 0;
         this.Status = MapDataStatus.READY;
         this.Reset();
@@ -110,7 +111,7 @@ export class MapData {
 
         //Run the GoBot post checks.  Check for overlaps, stepping on teleporters, etc.
         this.GoBots.forEach(gb => {
-            if(gb.x == this.end.x && gb.y == this.end.y)
+            if(gb.status == EntityStatus.NORMAL && gb.x == this.end.x && gb.y == this.end.y)
                 gb.Success();
         });
 
