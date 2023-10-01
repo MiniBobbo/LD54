@@ -1,11 +1,16 @@
 import { C } from "./C";
 
 export class GameData {
-    flags:Array<boolean>;
+    results:LevelResultsData[];
 
     constructor() {
-        this.flags = [];
-        for(let i = 0; i < C.FLAG_COUNT; i++)
-            this.flags.push(false);
+        this.results = [];
     }
+}
+
+export class LevelResultsData {
+    Name:string;
+    ID:string;
+    Complete:boolean = false;
+    Moves:number = 999;
 }

@@ -43,6 +43,11 @@ export class Robot {
      */
     MoveTo(x:number, y:number, d:Direction) {
         this.Twitch();
+        let newX = x * C.TILE_SIZE_X;
+        if(this.s.x != newX)
+            this.Dash();
+        else
+            this.Twitch();
         this.scene.tweens.add({
             targets:[this.s],
             x:x * C.TILE_SIZE_X, 
@@ -64,6 +69,15 @@ export class Robot {
 
     Twitch() {
         this.s.setScale(.2, 1.5);
+        this.scene.tweens.add({
+            targets:[this.s],
+            scaleX:1, 
+            scaleY:1,
+            duration:100,
+        });
+    }
+    Dash() {
+        this.s.setScale(2, .8);
         this.scene.tweens.add({
             targets:[this.s],
             scaleX:1, 

@@ -1,4 +1,4 @@
-Ideas:
+Todo:
 - Different Robot Types
 - Robots collide
 - Subroutines
@@ -6,22 +6,28 @@ Ideas:
 - Remove Nothing orders from instruction lists
 - Jump
 Next Level button on complete
-Reset Level button on complete.
+Reset Level button on complete
+- Save high scores
+- Display Complete and High Scores on the Menu
 - Don't allow subroutines to call subroutines
-Check for collisions before the teleporting which will make levels slightly harder. 
+Music
+SFX
+
+
 
 Polish:
-Animations
-Music
+-Animations for movement
+-Animations for jumping
 - Main Menu
-Screen Transitions
-Robots teleport when complete
+Improve Screen Transitions
+- Robots teleport when complete
 - Starting Creation Juice
 - Add Reset button to Instructions scene
 - Menu on Game Screen
 Add a delay between the last robot hitting the teleporter and the level ending
 How to play screens from the menu
 Background
+
 
 
 SFX:
@@ -34,9 +40,10 @@ Select
 Bugs:
 - Drag and drop disappears over icons for some reason. 
 - Bots don't teleport when reaching goal and still Twitch.
-Occasional solving issues.  Not sure what the problem is.
+- You can run and reset even after the puzzle is solved.  Causes graphical problems.  
 
 Later:
 Multiple exits
 Land on tile routine (fixes multiple exits and allows for things like spikes)
 Board changes each step
+Check for collisions before the teleporting which will make levels slightly harder. 

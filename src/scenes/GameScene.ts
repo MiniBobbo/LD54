@@ -17,6 +17,7 @@ import { EntityEvents } from "../enum/EntityEvents";
 export class GameScene extends Phaser.Scene {
        
     inst:InstructionScene;
+    bgLayer:Phaser.GameObjects.Layer;
     groundLayer:Phaser.GameObjects.Layer;
     midLayer:Phaser.GameObjects.Layer;
     topLayer:Phaser.GameObjects.Layer;
@@ -42,10 +43,14 @@ export class GameScene extends Phaser.Scene {
 
         this.EM = new EffectManager(this);
 
+        this.bgLayer = this.add.layer().setDepth(5);
         this.groundLayer = this.add.layer().setDepth(10);
         this.groundLayer.postFX.addBloom(0xffffff,1,1,1,3);
         this.midLayer = this.add.layer().setDepth(20);
         this.topLayer = this.add.layer().setDepth(30);
+
+        //Create BG Layer
+        this.CreateBGLayer();
 
         let r = new LdtkReader(this, this.cache.json.get('levels'));
         let mp = r.CreateMap(C.currentLevel, 'tiles');
@@ -77,6 +82,10 @@ export class GameScene extends Phaser.Scene {
         this.topLayer.postFX.addBloom(0xffffff, 1,1,1,2);
     }
 
+    CreateBGLayer() {
+        
+    }
+
     Fail() {
         this.time.addEvent({
             delay:500,
@@ -95,14 +104,29 @@ export class GameScene extends Phaser.Scene {
         let message = this.add.bitmapText(350, 300, '5px', 'Level Complete').setOrigin(.5).setScale(7).setMaxWidth(650);
         let smallmessage = this.add.bitmapText(350, 375, '5px', `Program Steps: ${this.md.ElapsedSteps}`).setOrigin(.5).setScale(5).setMaxWidth(650);
 
-        // let menu = this.add.bitmapText(350, 500, '5px', 'Back to Menu').setOrigin(.5).setScale(5).setMaxWidth(650)
-        // .setTint(0xff3333)
-        // .setInteractive().on('pointerdown', ()=>{this.scene.start('menu');}, this);
-        
 
         this.topLayer.add(message);
         this.topLayer.add(smallmessage);
-        // this.topLayer.add(menu);
+
+        let newRecord = false;
+        //Set the score info
+        let results = C.gd.results;
+        let r = C.gd.results.find(r=>r.ID == C.currentLevel)
+        if(r != null) {
+            r.Complete = true;
+            if(r.Moves > this.md.ElapsedSteps) {
+                r.Moves = this.md.ElapsedSteps;
+                newRecord = true;
+                C.SaveLocalGameData();
+            } 
+        }
+        if(newRecord) {
+            this.topLayer.add(this.add.bitmapText(350, 450, '5px', `NEW PERSONAL BEST\n${r.Moves} Steps`).setOrigin(.5).setScale(5).setMaxWidth(650).setCenterAlign().setTint(0xff0000));
+
+        }
+        
+
+
     }
 
     CreateDisplay(mp:LDtkMapPack) {
@@ -170,6 +194,9 @@ export class GameScene extends Phaser.Scene {
     }
 
     Start() {
+        if(this.md.Status == MapDataStatus.COMPLETE)
+            return;
+
         this.Reset();
         //Make the programs from the InstructionScene.
         //Find the GoBot instructions.

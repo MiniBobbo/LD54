@@ -1,3 +1,6 @@
+import { C } from "../C";
+import { LdtkReader } from "../map/LDtkReader";
+
 export class Preload extends Phaser.Scene {
     preload() {
         var progressBar = this.add.graphics();
@@ -72,5 +75,11 @@ export class Preload extends Phaser.Scene {
 
     create() {
         this.anims.create({ key: 'explode', frameRate: 60, frames: this.anims.generateFrameNames('atlas', { prefix: 'explode_', end: 29}), repeat: 0 });
+        let r = new LdtkReader(this, this.cache.json.get('levels'));
+        C.reader = r;
+        r.ldtk.levels.forEach(l=>{
+            C.LevelList.push(l.identifier);
+        });
+        let list = C.LevelList;
     }
 }
