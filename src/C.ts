@@ -20,6 +20,7 @@ export class C {
 
     static reader:LdtkReader;
 
+
     //This is the list of all the levels.  It is build from the LDTK file on startup.
     static LevelList:string[] = [];
 

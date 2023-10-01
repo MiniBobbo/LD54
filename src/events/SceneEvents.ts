@@ -8,5 +8,6 @@ export enum SceneEvents {
     SUCCESS = 'success',
     FAILED = 'failed',
     EFFECT = 'effect',
+    SOUND = 'sound',
     CHANGED_STATUS = 'changestatus'
 }

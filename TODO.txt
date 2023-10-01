@@ -10,8 +10,8 @@ Reset Level button on complete
 - Save high scores
 - Display Complete and High Scores on the Menu
 - Don't allow subroutines to call subroutines
-Music
-SFX
+- Music
+- SFX
 
 
 
@@ -31,10 +31,10 @@ Background
 
 
 SFX:
-Teleport
-Crash
-Move
-Select
+- Teleport
+- Crash
+- Move
+- Select
 
 
 Bugs:
@@ -47,3 +47,6 @@ Multiple exits
 Land on tile routine (fixes multiple exits and allows for things like spikes)
 Board changes each step
 Check for collisions before the teleporting which will make levels slightly harder. 
+
+
+this.gs.sound.play(Sounds.Deliver);

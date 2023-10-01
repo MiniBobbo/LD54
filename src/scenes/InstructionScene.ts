@@ -4,6 +4,7 @@ import { RobotInputs } from "../Entities/RobotInputs";
 import { Instructions } from "../enum/Instructions";
 import { SceneEvents } from "../events/SceneEvents";
 import { MapData } from "../helpers/MapData";
+import { SFX } from "../helpers/SoundManager";
 
 export class InstructionScene extends Phaser.Scene {
     selctImage:Phaser.GameObjects.Image;
@@ -44,6 +45,7 @@ export class InstructionScene extends Phaser.Scene {
 
         this.cameras.main.postFX.addBloom(0xffffff, 1,1,1,2);
 
+        this.events.on(SceneEvents.SOUND, (sfx:SFX)=>{ this.emitter.emit(SceneEvents.SOUND, sfx);});
         this.events.on(SceneEvents.SELECTED, (i:number)=>{ this.selctImage.setVisible(true).setFrame(C.InstructionToString(i)); this.SelectedInstruction = i;});
         this.events.on(SceneEvents.CHANGED_INPUTS, ()=>{ this.events.emit(SceneEvents.RESET);});
         this.input.on('pointerup', ()=>{ 
@@ -55,13 +57,13 @@ export class InstructionScene extends Phaser.Scene {
         .setTint(0x54ec36)
         .setInteractive();
         this.goText = this.add.bitmapText(150, go.y + 25, '5px', 'GO').setMaxWidth(280).setOrigin(.5).setScale(4);
-        go.on('pointerdown', ()=> {this.TryGo();});
+        go.on('pointerdown', ()=> {this.TryGo(); this.sound.play(SFX.Click);});
         let stop = this.add.nineslice(10,625, 'atlas', 'CyberTile_3', 280, 50, 10,10,10,10)
         .setOrigin(0,0)
         .setTint(0xff0000)
         .setInteractive();
         this.add.bitmapText(150, stop.y + 25, '5px', 'RESET').setMaxWidth(280).setOrigin(.5).setScale(4);
-        stop.on('pointerdown', ()=> {this.Reset();});
+        stop.on('pointerdown', ()=> {this.Reset(); this.sound.play(SFX.Click);});
     }
 
     SetEmitter(e:Phaser.Events.EventEmitter) {

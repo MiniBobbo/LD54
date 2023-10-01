@@ -16,6 +16,7 @@ export class MainMenuScene extends Phaser.Scene {
         this.scene.remove('inst');
         C.LoadLocalGameData();
 
+
         // this.Title = this.add.text(120,30, 'GAME TITLE').setFontSize(16).setWordWrapWidth(240).setOrigin(.5,0);
 
         // this.StartButton = this.CreateButton('Start Game', this.StartGame).setPosition(30,50);

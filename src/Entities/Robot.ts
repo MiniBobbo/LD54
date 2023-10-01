@@ -1,4 +1,6 @@
 import { C } from "../C";
+import { SceneEvents } from "../events/SceneEvents";
+import { SFX } from "../helpers/SoundManager";
 import { Direction } from "../models/EntityModel";
 
 export class Robot {
@@ -13,11 +15,6 @@ export class Robot {
     constructor(scene:Phaser.Scene, ID:number) {
         this.scene = scene;
         this.s = scene.add.sprite(0,0,'atlas', `${this.prefix}_North_0`).setOrigin(.5,1).setVisible(false).setScale(0,3);
-        this.scene.time.addEvent({
-            delay:5000,
-            callback:this.Appear,
-            callbackScope:this,
-        });
         this.ID = ID;
     }
 
@@ -57,6 +54,7 @@ export class Robot {
         this.SetDirection(d);
     }
     JumpTo(x:number, y:number, d:Direction) {
+        this.scene.events.emit(SceneEvents.SOUND, SFX.Jump);
         this.Twitch();
         this.scene.tweens.add({
             targets:[this.s],
@@ -68,6 +66,7 @@ export class Robot {
     }
 
     Twitch() {
+        this.scene.events.emit(SceneEvents.SOUND, SFX.Move);
         this.s.setScale(.2, 1.5);
         this.scene.tweens.add({
             targets:[this.s],
@@ -77,6 +76,7 @@ export class Robot {
         });
     }
     Dash() {
+        this.scene.events.emit(SceneEvents.SOUND, SFX.Move);
         this.s.setScale(2, .8);
         this.scene.tweens.add({
             targets:[this.s],
@@ -87,15 +87,18 @@ export class Robot {
     }
 
     Teleport() {
+        this.scene.events.emit(SceneEvents.SOUND, SFX.Teleport_up);
         this.scene.tweens.add({
             targets:[this.s],
+            delay:150,
             scaleX:0, 
-            scaleY:3,
+            scaleY:5,
             duration:100,
             onComplete:()=>{this.s.setVisible(false);}
         });
     }
     Appear() {
+        this.scene.events.emit(SceneEvents.SOUND, SFX.Teleport_Down);
         this.s.setVisible(true);
         this.scene.tweens.add({
             targets:[this.s],

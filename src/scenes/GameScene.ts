@@ -13,6 +13,7 @@ import { MapDataStatus } from "../enum/MapDataStatus";
 import { Scene } from "phaser";
 import { EffectManager } from "../helpers/EffectManager";
 import { EntityEvents } from "../enum/EntityEvents";
+import { SFX, SM } from "../helpers/SoundManager";
 
 export class GameScene extends Phaser.Scene {
        
@@ -42,6 +43,7 @@ export class GameScene extends Phaser.Scene {
         this.inst = this.scene.add('inst', InstructionScene, true) as InstructionScene;
 
         this.EM = new EffectManager(this);
+        new SM(this);
 
         this.bgLayer = this.add.layer().setDepth(5);
         this.groundLayer = this.add.layer().setDepth(10);
@@ -83,7 +85,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     CreateBGLayer() {
-        
+
     }
 
     Fail() {
@@ -98,33 +100,41 @@ export class GameScene extends Phaser.Scene {
         this.status = PlayState.Finished;
         // this.events.emit();
         
-        this.groundLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
-        this.midLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
-        // this.topLayer.postFX.addBlur();
-        let message = this.add.bitmapText(350, 300, '5px', 'Level Complete').setOrigin(.5).setScale(7).setMaxWidth(650);
-        let smallmessage = this.add.bitmapText(350, 375, '5px', `Program Steps: ${this.md.ElapsedSteps}`).setOrigin(.5).setScale(5).setMaxWidth(650);
-
-
-        this.topLayer.add(message);
-        this.topLayer.add(smallmessage);
-
-        let newRecord = false;
-        //Set the score info
-        let results = C.gd.results;
-        let r = C.gd.results.find(r=>r.ID == C.currentLevel)
-        if(r != null) {
-            r.Complete = true;
-            if(r.Moves > this.md.ElapsedSteps) {
-                r.Moves = this.md.ElapsedSteps;
-                newRecord = true;
-                C.SaveLocalGameData();
-            } 
-        }
-        if(newRecord) {
-            this.topLayer.add(this.add.bitmapText(350, 450, '5px', `NEW PERSONAL BEST\n${r.Moves} Steps`).setOrigin(.5).setScale(5).setMaxWidth(650).setCenterAlign().setTint(0xff0000));
-
-        }
+        this.time.addEvent({
+            delay:500,
+            callbackScope:this,
+            callback:()=>{
+                this.groundLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
+                this.midLayer.setAlpha(.5).postFX.addBlur(0,4,4,4);
+                // this.topLayer.postFX.addBlur();
+                let message = this.add.bitmapText(350, 300, '5px', 'Level Complete').setOrigin(.5).setScale(7).setMaxWidth(650);
+                let smallmessage = this.add.bitmapText(350, 375, '5px', `Program Steps: ${this.md.ElapsedSteps}`).setOrigin(.5).setScale(5).setMaxWidth(650);
         
+        
+                this.topLayer.add(message);
+                this.topLayer.add(smallmessage);
+        
+                let newRecord = false;
+                //Set the score info
+                let results = C.gd.results;
+                let r = C.gd.results.find(r=>r.ID == C.currentLevel)
+                if(r != null) {
+                    r.Complete = true;
+                    if(r.Moves > this.md.ElapsedSteps) {
+                        r.Moves = this.md.ElapsedSteps;
+                        newRecord = true;
+                        C.SaveLocalGameData();
+                    } 
+                }
+                if(newRecord) {
+                    this.topLayer.add(this.add.bitmapText(350, 450, '5px', `NEW PERSONAL BEST\n${r.Moves} Steps`).setOrigin(.5).setScale(5).setMaxWidth(650).setCenterAlign().setTint(0xff0000));
+        
+                }
+                
+        
+            }
+        });
+
 
 
     }
@@ -147,7 +157,7 @@ export class GameScene extends Phaser.Scene {
                 this.groundLayer.add(tile.s);
             }
         });
-
+        this.events.emit(SceneEvents.SOUND, SFX.TilesAppear);
         this.tweens.add({
             targets:this.groundLayer.getChildren(),
             y:{ value: '-=1000', ease: 'Cubic.easeInOut'},

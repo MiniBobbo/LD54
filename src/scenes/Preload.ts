@@ -1,4 +1,5 @@
 import { C } from "../C";
+import { SFX } from "../helpers/SoundManager";
 import { LdtkReader } from "../map/LDtkReader";
 
 export class Preload extends Phaser.Scene {
@@ -70,6 +71,15 @@ export class Preload extends Phaser.Scene {
         this.load.json('levels', 'AllLevels.ldtk');
         this.load.bitmapFont('5px', '5px_0.png', '5px.fnt');
         this.load.multiatlas('atlas', 'atlas.json');
+
+        this.load.audio(SFX.Explode, 'SFX/Explode.wav');
+        this.load.audio(SFX.Jump, 'SFX/Jumping.wav');
+        this.load.audio(SFX.Move, 'SFX/Move.wav');
+        this.load.audio(SFX.Teleport_Down, 'SFX/Teleport_Down.wav');
+        this.load.audio(SFX.Teleport_up, 'SFX/Teleport.wav');
+        this.load.audio(SFX.TilesAppear, 'SFX/TilesAppear.wav');
+        this.load.audio(SFX.Click, 'SFX/Click.wav');
+        this.load.audio('mainmusic', 'LD54.ogg');
     }
 
 
@@ -81,5 +91,7 @@ export class Preload extends Phaser.Scene {
             C.LevelList.push(l.identifier);
         });
         let list = C.LevelList;
+        this.sound.play('mainmusic', {loop:true, volume:.3});
+
     }
 }
