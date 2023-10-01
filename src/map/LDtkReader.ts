@@ -117,9 +117,10 @@ export class LdtkReader {
             tileWidth: layer.__gridSize,
             tileHeight: layer.__gridSize
         });
-        var csv = layer.intGridCsv;
+        let a:number[] = csv;
+        let newCSV = [...a];
         const newArr = [];
-        while(csv.length) newArr.push(csv.splice(0, layer.__cWid));
+        while(newCSV.length) newArr.push(newCSV.splice(0, layer.__cWid));
 
         map = this.scene.make.tilemap({
             data:newArr,
