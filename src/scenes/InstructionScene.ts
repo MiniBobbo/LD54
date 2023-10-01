@@ -99,6 +99,10 @@ export class InstructionScene extends Phaser.Scene {
                     this.CreateInputs('ZoomBot', md.ZoomBotInstructionsAllowed, offset);
                     offset++;
                     break;
+                case 'Sub1':
+                    this.CreateInputs('Sub1', md.Sub1InstructionsAllowed, offset);
+                    offset++;
+                    break;
             
                 default:
                     break;

@@ -46,6 +46,8 @@ export class C {
                 return 'Instructions_Wait_0';
             case Instructions.Jump:
                 return 'Instructions_Jump_0';
+            case Instructions.Sub1:
+                return 'Instructions_Sub_0';
             case 0:
                 return 'CyberTile_4';
             default:

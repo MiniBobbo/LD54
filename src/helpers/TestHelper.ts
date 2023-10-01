@@ -39,13 +39,15 @@ export class TestHelper {
         
     }
 
-    static TestInstructions(md:MapData, GoBotInst?:number[], ZoomBotInst?:number[]):TestResults {
+    static TestInstructions(md:MapData, GoBotInst?:number[], ZoomBotInst?:number[], SubInstructions?:number[]):TestResults {
         let r = new TestResults();
         r.GoBotInstructions = [...GoBotInst];
         r.ZoomBotInstructions = [...ZoomBotInst];
+        r.SubInstructions = [...SubInstructions];
         r.name = md.name;
         md.GoBotInstructions = GoBotInst;
         md.ZoomBotInstructions = ZoomBotInst;
+        md.Sub1Instructions = SubInstructions;
         md.Prepare();
 
         do {
@@ -64,4 +66,5 @@ export class TestResults {
     steps:number = 0;
     GoBotInstructions:number[];
     ZoomBotInstructions:number[];
+    SubInstructions:number[];
 }

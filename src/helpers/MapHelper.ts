@@ -37,6 +37,7 @@ export class MapHelper {
         });
         md.GoBotInstructionsAllowed = map.level.fieldInstances[3].__value;
         md.ZoomBotInstructionsAllowed = map.level.fieldInstances[5].__value;
+        md.Sub1InstructionsAllowed = map.level.fieldInstances[6].__value;
 
         return md;
     }

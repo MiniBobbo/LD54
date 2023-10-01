@@ -1,10 +1,14 @@
 Ideas:
-Different Robot Types
+- Different Robot Types
 - Robots collide
-Subroutines
+- Subroutines
 - Wait Instructions
 - Remove Nothing orders from instruction lists
 - Jump
+Next Level button on complete
+Reset Level button on complete.
+- Don't allow subroutines to call subroutines
+Check for collisions before the teleporting which will make levels slightly harder. 
 
 Polish:
 Animations
@@ -15,6 +19,10 @@ Robots teleport when complete
 - Starting Creation Juice
 - Add Reset button to Instructions scene
 - Menu on Game Screen
+Add a delay between the last robot hitting the teleporter and the level ending
+How to play screens from the menu
+Background
+
 
 SFX:
 Teleport
@@ -24,7 +32,11 @@ Select
 
 
 Bugs:
-Playing after the success. (How should this work?)
 - Drag and drop disappears over icons for some reason. 
 - Bots don't teleport when reaching goal and still Twitch.
 Occasional solving issues.  Not sure what the problem is.
+
+Later:
+Multiple exits
+Land on tile routine (fixes multiple exits and allows for things like spikes)
+Board changes each step

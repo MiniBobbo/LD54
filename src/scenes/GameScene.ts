@@ -181,6 +181,10 @@ export class GameScene extends Phaser.Scene {
         if(zbi != null)
             this.md.ZoomBotInstructions = zbi.GetInstructions();
 
+        let sub = this.inst.RobotInp.find(i=>i.Name == 'Sub1');
+        if(sub != null)
+            this.md.Sub1Instructions = sub.GetInstructions();
+
         this.md.Prepare();
         this.currentDelay = this.nextDelay;
         this.status = PlayState.Running;

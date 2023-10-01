@@ -8,18 +8,16 @@ export class StandAloneScene extends Phaser.Scene {
     messages:Phaser.GameObjects.Text;
     create() {
         let r = new LdtkReader(this, this.cache.json.get('levels'));
-        let mp = r.CreateMap('Level_8', 'tile');
+        let mp = r.CreateMap('Level_7', 'tile');
 
         let md = MapHelper.LoadMap(mp);
         md.SetEmitter(this.events);
 
-        let GoBotInstructions = TestHelper.generateInstructionLists(md.Commands, md.GoBotInstructionsAllowed);
-        let ZoomBotInstructions = TestHelper.generateInstructionLists(md.Commands, md.ZoomBotInstructionsAllowed);
+        let gbi = [6];
+        let zbi = [6];
+        let sub = [3,1,1];
 
-        let gbi = [5,1,5,3];
-        let zbi = [2,5,5,5];
-
-        let results = TestHelper.TestInstructions(md, gbi, zbi);
+        let results = TestHelper.TestInstructions(md, gbi, zbi, sub);
 
         console.log(`Results: ${results.success}`);
 

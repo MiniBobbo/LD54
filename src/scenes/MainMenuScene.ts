@@ -17,7 +17,7 @@ export class MainMenuScene extends Phaser.Scene {
         this.scene.remove('game');
         this.scene.remove('inst');
 
-        this.Title = this.add.text(120,30, 'GAME TITLE').setFontSize(16).setWordWrapWidth(240).setOrigin(.5,0);
+        // this.Title = this.add.text(120,30, 'GAME TITLE').setFontSize(16).setWordWrapWidth(240).setOrigin(.5,0);
 
         // this.StartButton = this.CreateButton('Start Game', this.StartGame).setPosition(30,50);
         // this.EraseButton = this.CreateButton('Erase Saved Data', this.EraseSaves).setPosition(200,200);

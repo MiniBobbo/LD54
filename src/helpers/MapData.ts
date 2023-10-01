@@ -32,8 +32,6 @@ export class MapData {
     private currentZoomBotStep:number = 0;
     Sub1InstructionsAllowed:number = 0;
     Sub1Instructions:Instructions[] = [];
-    private fullSub1Instructions:Instructions[] = [];
-    private currentSub1Step:number = 0;
 
     ElapsedSteps = 0;
     Status:MapDataStatus = MapDataStatus.INITIAL;
@@ -170,8 +168,17 @@ export class MapData {
         if(partial == null)
         partial = [];
         //TODO: Subroutines.
+        if(this.Sub1Instructions != null && this.Sub1Instructions.length > 0) {
+            let subArray = [...this.Sub1Instructions];
 
-
+            partial = partial.map(num => {
+                if (num === 6) {
+                    return [...subArray]; // Insert replacement array
+                } else {
+                    return num; // Keep the original number
+                }
+            }).flat();
+        }
 
         return [...partial];
     }

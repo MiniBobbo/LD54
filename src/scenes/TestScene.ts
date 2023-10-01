@@ -18,12 +18,15 @@ export class TestScene extends Phaser.Scene {
 
         let GoBotInstructions = TestHelper.generateInstructionLists(md.Commands, md.GoBotInstructionsAllowed);
         let ZoomBotInstructions = TestHelper.generateInstructionLists(md.Commands, md.ZoomBotInstructionsAllowed);
+        let Sub1Instructions = TestHelper.generateInstructionLists(md.Commands, md.Sub1InstructionsAllowed);
 
         let allResults:TestResults[] = [];
         GoBotInstructions.forEach(gbi => {
             ZoomBotInstructions.forEach(zbi => {
-                let results = TestHelper.TestInstructions(md, gbi, zbi);
-                allResults.push(results);
+                Sub1Instructions.forEach(sub => {
+                    let results = TestHelper.TestInstructions(md, gbi, zbi, sub);
+                    allResults.push(results);
+                });
             });
         });
 
@@ -37,7 +40,7 @@ export class TestScene extends Phaser.Scene {
 
         success.sort((a:TestResults,b:TestResults)=>a.steps - b.steps);
         success.forEach(element => {
-            t+=`Go: ${element.GoBotInstructions} || Zoom ${element.ZoomBotInstructions} : ${element.steps} Steps.\n`;
+            t+=`Go: ${element.GoBotInstructions} || Zoom ${element.ZoomBotInstructions} || Sub ${element.SubInstructions} : ${element.steps} Steps.\n`;
         });
 
         this.messages.setText(t);

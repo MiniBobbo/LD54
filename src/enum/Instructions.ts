@@ -5,7 +5,7 @@ export enum Instructions {
     Right = 3,
     Wait = 4,
     Jump = 5,
-    // Sub1 = 4,
+    Sub1 = 6,
     // Sub2 = 5
 }
 

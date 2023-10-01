@@ -11,7 +11,7 @@
 	"iid": "4df56940-3b70-11ee-acc8-196ee84d6a89",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 44,
+	"nextUid": 48,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "LinearHorizontal",
@@ -418,7 +418,8 @@
 			{ "id": "Left", "tileRect": null, "color": 14120515 },
 			{ "id": "Right", "tileRect": null, "color": 15389866 },
 			{ "id": "Wait", "tileRect": null, "color": 14984818 },
-			{ "id": "Jump", "tileRect": null, "color": 7552569 }
+			{ "id": "Jump", "tileRect": null, "color": 7552569 },
+			{ "id": "Sub1", "tileRect": null, "color": 4073265 }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "Inputs", "uid": 26, "values": [
 			{ "id": "GoBot", "tileRect": null, "color": 12470831 },
@@ -651,6 +652,41 @@
 			"allowedRefsEntityUid": null,
 			"allowedRefTags": [],
 			"tilesetUid": null
+		},
+		{
+			"identifier": "SubRoutineAllowed",
+			"doc": null,
+			"__type": "Int",
+			"uid": 46,
+			"type": "F_Int",
+			"isArray": false,
+			"canBeNull": false,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "Hidden",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": { "id": "V_Int", "params": [0] },
+			"textLanguageMode": null,
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
 		}
 	] },
 	"levels": [
@@ -681,8 +717,12 @@
 				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": ["Forward"], "__tile": null, "defUid": 25, "realEditorValues": [null] },
 				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["GoBot"], "__tile": null, "defUid": 27, "realEditorValues": [null] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 1, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Easy", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Easy"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -849,8 +889,12 @@
 					"params": ["GoBot"]
 				}] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Easy", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Easy"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -1018,8 +1062,12 @@
 					"params": ["GoBot"]
 				}] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Easy", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Easy"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -1273,11 +1321,12 @@
 					"params": ["GoBot"]
 				}] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 6, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Hard", "__tile": null, "defUid": 33, "realEditorValues": [{
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["Hard"]
+					"params": ["Medium"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -1524,8 +1573,12 @@
 				} ] },
 				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["GoBot"], "__tile": null, "defUid": 27, "realEditorValues": [null] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Easy", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Easy"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -1725,7 +1778,8 @@
 					"id": "V_String",
 					"params": ["Easy"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 3, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -1944,7 +1998,8 @@
 					"id": "V_String",
 					"params": ["Medium"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -2111,6 +2166,230 @@
 		},
 		{
 			"identifier": "Level_7",
+			"iid": "4ca18570-3b70-11ee-b63b-258b023a1dec",
+			"uid": 45,
+			"worldX": -1,
+			"worldY": -1,
+			"worldDepth": 0,
+			"pxWid": 880,
+			"pxHei": 1040,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [
+				{ "__identifier": "LevelName", "__type": "String", "__value": "Subroutines", "__tile": null, "defUid": 2, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Subroutines"]
+				}] },
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right", "Sub1" ], "__tile": null, "defUid": 25, "realEditorValues": [ null, {
+					"id": "V_String",
+					"params": ["Left"]
+				}, {
+					"id": "V_String",
+					"params": ["Right"]
+				}, {
+					"id": "V_String",
+					"params": ["Sub1"]
+				} ] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": [ "GoBot", "ZoomBot", "Sub1" ], "__tile": null, "defUid": 27, "realEditorValues": [ {
+					"id": "V_String",
+					"params": ["GoBot"]
+				}, {
+					"id": "V_String",
+					"params": ["ZoomBot"]
+				}, {
+					"id": "V_String",
+					"params": ["Sub1"]
+				} ] },
+				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 1, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Easy", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Easy"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 1, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 4, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+			],
+			"layerInstances": [
+				{
+					"__identifier": "Mg",
+					"__type": "AutoLayer",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 15,
+					"__tilesetRelPath": "Tiles.png",
+					"iid": "4ca18571-3b70-11ee-b63b-b541f22829b4",
+					"levelId": 45,
+					"layerDefUid": 19,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [
+						{ "px": [240,320], "src": [0,0], "f": 0, "t": 0, "d": [21,47], "a": 1 },
+						{ "px": [320,320], "src": [0,0], "f": 0, "t": 0, "d": [21,48], "a": 1 },
+						{ "px": [400,320], "src": [0,0], "f": 0, "t": 0, "d": [21,49], "a": 1 },
+						{ "px": [480,320], "src": [0,0], "f": 0, "t": 0, "d": [21,50], "a": 1 },
+						{ "px": [240,400], "src": [0,0], "f": 0, "t": 0, "d": [21,58], "a": 1 },
+						{ "px": [480,400], "src": [0,0], "f": 0, "t": 0, "d": [21,61], "a": 1 },
+						{ "px": [240,480], "src": [0,0], "f": 0, "t": 0, "d": [21,69], "a": 1 },
+						{ "px": [480,480], "src": [0,0], "f": 0, "t": 0, "d": [21,72], "a": 1 },
+						{ "px": [240,560], "src": [0,0], "f": 0, "t": 0, "d": [21,80], "a": 1 },
+						{ "px": [320,560], "src": [0,0], "f": 0, "t": 0, "d": [21,81], "a": 1 },
+						{ "px": [400,560], "src": [0,0], "f": 0, "t": 0, "d": [21,82], "a": 1 },
+						{ "px": [480,560], "src": [0,0], "f": 0, "t": 0, "d": [21,83], "a": 1 }
+					],
+					"seed": 853317,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "Entities",
+					"__type": "Entities",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "4ca18572-3b70-11ee-b63b-97b335fb947b",
+					"levelId": 45,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 9866159,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "GoBot",
+							"__grid": [3,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"__worldX": 6736,
+							"__worldY": 560,
+							"iid": "4ca18573-3b70-11ee-b63b-fb4e2349fc3e",
+							"width": 80,
+							"height": 80,
+							"defUid": 4,
+							"px": [240,560],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "West", "__tile": null, "defUid": 5, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["West"]
+							}] }]
+						},
+						{
+							"__identifier": "End",
+							"__grid": [6,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#265C42",
+							"__worldX": 6976,
+							"__worldY": 320,
+							"iid": "4ca18574-3b70-11ee-b63b-a10d9869a798",
+							"width": 80,
+							"height": 80,
+							"defUid": 8,
+							"px": [480,320],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 10, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "GoBot",
+							"__grid": [3,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"__worldX": 6736,
+							"__worldY": 320,
+							"iid": "99c6d1c0-3b70-11ee-b63b-150b5fab498c",
+							"width": 80,
+							"height": 80,
+							"defUid": 4,
+							"px": [240,320],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 5, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["North"]
+							}] }]
+						},
+						{
+							"__identifier": "ZoomBot",
+							"__grid": [6,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#124E89",
+							"__worldX": 6976,
+							"__worldY": 560,
+							"iid": "a0205690-3b70-11ee-b63b-739fb3d65b12",
+							"width": 80,
+							"height": 80,
+							"defUid": 36,
+							"px": [480,560],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "South", "__tile": null, "defUid": 37, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["South"]
+							}] }]
+						}
+					]
+				},
+				{
+					"__identifier": "Layout",
+					"__type": "IntGrid",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "4ca18575-3b70-11ee-b63b-b7c3492a4482",
+					"levelId": 45,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,
+						0,0,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0
+					],
+					"autoLayerTiles": [],
+					"seed": 8123591,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": []
+		},
+		{
+			"identifier": "Level_8",
 			"iid": "de4ebe30-3b70-11ee-b63b-cd48f080cc7a",
 			"uid": 43,
 			"worldX": -1,
@@ -2151,11 +2430,12 @@
 					"params": ["ZoomBot"]
 				} ] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Hard", "__tile": null, "defUid": 33, "realEditorValues": [{
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["Hard"]
+					"params": ["Medium"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -2314,7 +2594,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"__worldX": 7136,
+							"__worldX": 8064,
 							"__worldY": 720,
 							"iid": "de4ebe33-3b70-11ee-b63b-5d256f7af22b",
 							"width": 80,
@@ -2333,7 +2613,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#265C42",
-							"__worldX": 6896,
+							"__worldX": 7824,
 							"__worldY": 400,
 							"iid": "de4ebe34-3b70-11ee-b63b-0d347a377401",
 							"width": 80,
@@ -2349,7 +2629,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#124E89",
-							"__worldX": 6656,
+							"__worldX": 7584,
 							"__worldY": 160,
 							"iid": "de4ebe35-3b70-11ee-b63b-613ed7742941",
 							"width": 80,
@@ -2368,7 +2648,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#124E89",
-							"__worldX": 6656,
+							"__worldX": 7584,
 							"__worldY": 560,
 							"iid": "ed707de0-3b70-11ee-b63b-73c591e4b4a4",
 							"width": 80,
@@ -2384,7 +2664,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"__worldX": 7136,
+							"__worldX": 8064,
 							"__worldY": 160,
 							"iid": "ef748b40-3b70-11ee-b63b-8dd4ae810006",
 							"width": 80,
@@ -2433,7 +2713,192 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "Level_8",
+			"identifier": "Level_9",
+			"iid": "13434620-3b70-11ee-b63b-5dc4461bd836",
+			"uid": 44,
+			"worldX": -1,
+			"worldY": -1,
+			"worldDepth": 0,
+			"pxWid": 880,
+			"pxHei": 1040,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [
+				{ "__identifier": "LevelName", "__type": "String", "__value": "No Left Turns", "__tile": null, "defUid": 2, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["No Left Turns"]
+				}] },
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Right", "Jump" ], "__tile": null, "defUid": 25, "realEditorValues": [ null, {
+					"id": "V_String",
+					"params": ["Right"]
+				}, {
+					"id": "V_String",
+					"params": ["Jump"]
+				} ] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["ZoomBot"], "__tile": null, "defUid": 27, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["ZoomBot"]
+				}] },
+				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Hard", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Hard"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 6, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
+			],
+			"layerInstances": [
+				{
+					"__identifier": "Mg",
+					"__type": "AutoLayer",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 15,
+					"__tilesetRelPath": "Tiles.png",
+					"iid": "13434621-3b70-11ee-b63b-0dc45a3e220b",
+					"levelId": 44,
+					"layerDefUid": 19,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [
+						{ "px": [80,240], "src": [0,0], "f": 0, "t": 0, "d": [21,34], "a": 1 },
+						{ "px": [160,240], "src": [0,0], "f": 0, "t": 0, "d": [21,35], "a": 1 },
+						{ "px": [240,240], "src": [0,0], "f": 0, "t": 0, "d": [21,36], "a": 1 },
+						{ "px": [320,240], "src": [0,0], "f": 0, "t": 0, "d": [21,37], "a": 1 },
+						{ "px": [80,320], "src": [0,0], "f": 0, "t": 0, "d": [21,45], "a": 1 },
+						{ "px": [160,320], "src": [0,0], "f": 0, "t": 0, "d": [21,46], "a": 1 },
+						{ "px": [240,320], "src": [0,0], "f": 0, "t": 0, "d": [21,47], "a": 1 },
+						{ "px": [320,320], "src": [0,0], "f": 0, "t": 0, "d": [21,48], "a": 1 },
+						{ "px": [320,400], "src": [0,0], "f": 0, "t": 0, "d": [21,59], "a": 1 },
+						{ "px": [320,480], "src": [0,0], "f": 0, "t": 0, "d": [21,70], "a": 1 },
+						{ "px": [320,560], "src": [0,0], "f": 0, "t": 0, "d": [21,81], "a": 1 },
+						{ "px": [80,640], "src": [0,0], "f": 0, "t": 0, "d": [21,89], "a": 1 },
+						{ "px": [160,640], "src": [0,0], "f": 0, "t": 0, "d": [21,90], "a": 1 },
+						{ "px": [240,640], "src": [0,0], "f": 0, "t": 0, "d": [21,91], "a": 1 },
+						{ "px": [320,640], "src": [0,0], "f": 0, "t": 0, "d": [21,92], "a": 1 },
+						{ "px": [400,640], "src": [0,0], "f": 0, "t": 0, "d": [21,93], "a": 1 },
+						{ "px": [480,640], "src": [0,0], "f": 0, "t": 0, "d": [21,94], "a": 1 },
+						{ "px": [560,640], "src": [0,0], "f": 0, "t": 0, "d": [21,95], "a": 1 },
+						{ "px": [320,720], "src": [0,0], "f": 0, "t": 0, "d": [21,103], "a": 1 },
+						{ "px": [320,800], "src": [0,0], "f": 0, "t": 0, "d": [21,114], "a": 1 }
+					],
+					"seed": 6090056,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "Entities",
+					"__type": "Entities",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "13434622-3b70-11ee-b63b-99f720eb7cc2",
+					"levelId": 44,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 1009574,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "End",
+							"__grid": [2,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#265C42",
+							"__worldX": 8512,
+							"__worldY": 240,
+							"iid": "13434624-3b70-11ee-b63b-0db89d6d678f",
+							"width": 80,
+							"height": 80,
+							"defUid": 8,
+							"px": [160,240],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 10, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "ZoomBot",
+							"__grid": [3,8],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#124E89",
+							"__worldX": 8592,
+							"__worldY": 640,
+							"iid": "13434625-3b70-11ee-b63b-2d10a1cbb9a3",
+							"width": 80,
+							"height": 80,
+							"defUid": 36,
+							"px": [240,640],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "East", "__tile": null, "defUid": 37, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["East"]
+							}] }]
+						}
+					]
+				},
+				{
+					"__identifier": "Layout",
+					"__type": "IntGrid",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "13434626-3b70-11ee-b63b-17d274c5220b",
+					"levelId": 44,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+						1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+						1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,
+						0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0
+					],
+					"autoLayerTiles": [],
+					"seed": 7825507,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": []
+		},
+		{
+			"identifier": "Level_10",
 			"iid": "56a51a90-3b70-11ee-b63b-a97028907a7b",
 			"uid": 40,
 			"worldX": -1,
@@ -2468,8 +2933,12 @@
 				} ] },
 				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": ["GoBot"], "__tile": null, "defUid": 27, "realEditorValues": [null] },
 				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
-				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] }
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Medium"]
+				}] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 0, "__tile": null, "defUid": 35, "realEditorValues": [] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -2556,7 +3025,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"__worldX": 8064,
+							"__worldX": 9920,
 							"__worldY": 560,
 							"iid": "56a51a93-3b70-11ee-b63b-057d7869bb3b",
 							"width": 80,
@@ -2575,7 +3044,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#265C42",
-							"__worldX": 7744,
+							"__worldX": 9600,
 							"__worldY": 240,
 							"iid": "56a51a94-3b70-11ee-b63b-0fe104e300b4",
 							"width": 80,
@@ -2621,7 +3090,254 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "Level_9",
+			"identifier": "Level_11",
+			"iid": "c8b9ea80-3b70-11ee-b63b-1dd9bef89246",
+			"uid": 47,
+			"worldX": -1,
+			"worldY": -1,
+			"worldDepth": 0,
+			"pxWid": 880,
+			"pxHei": 1040,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [
+				{ "__identifier": "LevelName", "__type": "String", "__value": "Sub the Jump", "__tile": null, "defUid": 2, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Sub the Jump"]
+				}] },
+				{ "__identifier": "Instructions", "__type": "Array<LocalEnum.Instructions>", "__value": [ "Forward", "Left", "Right", "Jump", "Sub1" ], "__tile": null, "defUid": 25, "realEditorValues": [
+					{
+						"id": "V_String",
+						"params": ["Forward"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Left"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Right"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Jump"]
+					},
+					{
+						"id": "V_String",
+						"params": ["Sub1"]
+					}
+				] },
+				{ "__identifier": "InputsAllowed", "__type": "Array<LocalEnum.Inputs>", "__value": [ "GoBot", "ZoomBot", "Sub1" ], "__tile": null, "defUid": 27, "realEditorValues": [ {
+					"id": "V_String",
+					"params": ["GoBot"]
+				}, {
+					"id": "V_String",
+					"params": ["ZoomBot"]
+				}, {
+					"id": "V_String",
+					"params": ["Sub1"]
+				} ] },
+				{ "__identifier": "GoBotInstructions", "__type": "Int", "__value": 2, "__tile": null, "defUid": 28, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+				{ "__identifier": "Difficulty", "__type": "LocalEnum.Difficulty", "__value": "Medium", "__tile": null, "defUid": 33, "realEditorValues": [] },
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 2, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 4, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+			],
+			"layerInstances": [
+				{
+					"__identifier": "Mg",
+					"__type": "AutoLayer",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 15,
+					"__tilesetRelPath": "Tiles.png",
+					"iid": "c8b9ea81-3b70-11ee-b63b-4751c9470f13",
+					"levelId": 47,
+					"layerDefUid": 19,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [
+						{ "px": [80,240], "src": [0,0], "f": 0, "t": 0, "d": [21,34], "a": 1 },
+						{ "px": [160,240], "src": [0,0], "f": 0, "t": 0, "d": [21,35], "a": 1 },
+						{ "px": [240,240], "src": [0,0], "f": 0, "t": 0, "d": [21,36], "a": 1 },
+						{ "px": [400,240], "src": [0,0], "f": 0, "t": 0, "d": [21,38], "a": 1 },
+						{ "px": [560,240], "src": [0,0], "f": 0, "t": 0, "d": [21,40], "a": 1 },
+						{ "px": [720,240], "src": [0,0], "f": 0, "t": 0, "d": [21,42], "a": 1 },
+						{ "px": [80,320], "src": [0,0], "f": 0, "t": 0, "d": [21,45], "a": 1 },
+						{ "px": [160,320], "src": [0,0], "f": 0, "t": 0, "d": [21,46], "a": 1 },
+						{ "px": [240,320], "src": [0,0], "f": 0, "t": 0, "d": [21,47], "a": 1 },
+						{ "px": [400,320], "src": [0,0], "f": 0, "t": 0, "d": [21,49], "a": 1 },
+						{ "px": [560,320], "src": [0,0], "f": 0, "t": 0, "d": [21,51], "a": 1 },
+						{ "px": [720,320], "src": [0,0], "f": 0, "t": 0, "d": [21,53], "a": 1 },
+						{ "px": [80,400], "src": [0,0], "f": 0, "t": 0, "d": [21,56], "a": 1 },
+						{ "px": [160,400], "src": [0,0], "f": 0, "t": 0, "d": [21,57], "a": 1 },
+						{ "px": [240,400], "src": [0,0], "f": 0, "t": 0, "d": [21,58], "a": 1 },
+						{ "px": [400,400], "src": [0,0], "f": 0, "t": 0, "d": [21,60], "a": 1 },
+						{ "px": [480,400], "src": [0,0], "f": 0, "t": 0, "d": [21,61], "a": 1 },
+						{ "px": [560,400], "src": [0,0], "f": 0, "t": 0, "d": [21,62], "a": 1 },
+						{ "px": [720,400], "src": [0,0], "f": 0, "t": 0, "d": [21,64], "a": 1 },
+						{ "px": [80,480], "src": [0,0], "f": 0, "t": 0, "d": [21,67], "a": 1 },
+						{ "px": [160,480], "src": [0,0], "f": 0, "t": 0, "d": [21,68], "a": 1 },
+						{ "px": [240,480], "src": [0,0], "f": 0, "t": 0, "d": [21,69], "a": 1 },
+						{ "px": [400,480], "src": [0,0], "f": 0, "t": 0, "d": [21,71], "a": 1 },
+						{ "px": [480,480], "src": [0,0], "f": 0, "t": 0, "d": [21,72], "a": 1 },
+						{ "px": [560,480], "src": [0,0], "f": 0, "t": 0, "d": [21,73], "a": 1 },
+						{ "px": [720,480], "src": [0,0], "f": 0, "t": 0, "d": [21,75], "a": 1 },
+						{ "px": [80,560], "src": [0,0], "f": 0, "t": 0, "d": [21,78], "a": 1 },
+						{ "px": [160,560], "src": [0,0], "f": 0, "t": 0, "d": [21,79], "a": 1 },
+						{ "px": [240,560], "src": [0,0], "f": 0, "t": 0, "d": [21,80], "a": 1 },
+						{ "px": [400,560], "src": [0,0], "f": 0, "t": 0, "d": [21,82], "a": 1 },
+						{ "px": [480,560], "src": [0,0], "f": 0, "t": 0, "d": [21,83], "a": 1 },
+						{ "px": [560,560], "src": [0,0], "f": 0, "t": 0, "d": [21,84], "a": 1 },
+						{ "px": [720,560], "src": [0,0], "f": 0, "t": 0, "d": [21,86], "a": 1 },
+						{ "px": [80,640], "src": [0,0], "f": 0, "t": 0, "d": [21,89], "a": 1 },
+						{ "px": [160,640], "src": [0,0], "f": 0, "t": 0, "d": [21,90], "a": 1 },
+						{ "px": [240,640], "src": [0,0], "f": 0, "t": 0, "d": [21,91], "a": 1 },
+						{ "px": [400,640], "src": [0,0], "f": 0, "t": 0, "d": [21,93], "a": 1 },
+						{ "px": [560,640], "src": [0,0], "f": 0, "t": 0, "d": [21,95], "a": 1 },
+						{ "px": [720,640], "src": [0,0], "f": 0, "t": 0, "d": [21,97], "a": 1 },
+						{ "px": [80,720], "src": [0,0], "f": 0, "t": 0, "d": [21,100], "a": 1 },
+						{ "px": [160,720], "src": [0,0], "f": 0, "t": 0, "d": [21,101], "a": 1 },
+						{ "px": [240,720], "src": [0,0], "f": 0, "t": 0, "d": [21,102], "a": 1 },
+						{ "px": [400,720], "src": [0,0], "f": 0, "t": 0, "d": [21,104], "a": 1 },
+						{ "px": [560,720], "src": [0,0], "f": 0, "t": 0, "d": [21,106], "a": 1 },
+						{ "px": [720,720], "src": [0,0], "f": 0, "t": 0, "d": [21,108], "a": 1 }
+					],
+					"seed": 3481353,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "Entities",
+					"__type": "Entities",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "c8b9ea82-3b70-11ee-b63b-b548446c74f9",
+					"levelId": 47,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 4337445,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": [
+						{
+							"__identifier": "GoBot",
+							"__grid": [2,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"__worldX": 10368,
+							"__worldY": 240,
+							"iid": "f2615e40-3b70-11ee-b63b-f17a4fc5fc0e",
+							"width": 80,
+							"height": 80,
+							"defUid": 4,
+							"px": [160,240],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "East", "__tile": null, "defUid": 5, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["East"]
+							}] }]
+						},
+						{
+							"__identifier": "ZoomBot",
+							"__grid": [2,9],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#124E89",
+							"__worldX": 10368,
+							"__worldY": 720,
+							"iid": "f5360210-3b70-11ee-b63b-7d32d28cacd0",
+							"width": 80,
+							"height": 80,
+							"defUid": 36,
+							"px": [160,720],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "East", "__tile": null, "defUid": 37, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["East"]
+							}] }]
+						},
+						{
+							"__identifier": "End",
+							"__grid": [9,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#265C42",
+							"__worldX": 10928,
+							"__worldY": 480,
+							"iid": "fc5f8110-3b70-11ee-b63b-cfc9f4eb2c0b",
+							"width": 80,
+							"height": 80,
+							"defUid": 8,
+							"px": [720,480],
+							"fieldInstances": [{ "__identifier": "Direction", "__type": "LocalEnum.Direction", "__value": "North", "__tile": null, "defUid": 10, "realEditorValues": [] }]
+						}
+					]
+				},
+				{
+					"__identifier": "Layout",
+					"__type": "IntGrid",
+					"__cWid": 11,
+					"__cHei": 13,
+					"__gridSize": 80,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": null,
+					"__tilesetRelPath": null,
+					"iid": "c8b9ea83-3b70-11ee-b63b-4f6650fdd722",
+					"levelId": 47,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+						1,1,0,1,0,1,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,1,1,0,1,1,1,0,1,0,0,1,1,1,
+						0,1,1,1,0,1,0,0,1,1,1,0,1,1,1,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,1,1,0,1,
+						0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0
+					],
+					"autoLayerTiles": [],
+					"seed": 9176570,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": []
+		},
+		{
+			"identifier": "Level_12",
 			"iid": "e1259e30-3b70-11ee-b63b-41a3d05a08f6",
 			"uid": 41,
 			"worldX": -1,
@@ -2666,7 +3382,8 @@
 					"id": "V_String",
 					"params": ["Hard"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -2796,7 +3513,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"__worldX": 8672,
+							"__worldX": 11456,
 							"__worldY": 160,
 							"iid": "e1259e33-3b70-11ee-b63b-2da28a3a61e9",
 							"width": 80,
@@ -2815,7 +3532,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#265C42",
-							"__worldX": 8992,
+							"__worldX": 11776,
 							"__worldY": 560,
 							"iid": "e1259e34-3b70-11ee-b63b-0f5dd00ad8be",
 							"width": 80,
@@ -2831,7 +3548,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#124E89",
-							"__worldX": 8512,
+							"__worldX": 11296,
 							"__worldY": 400,
 							"iid": "f2f00fb0-3b70-11ee-b63b-29152383ec2a",
 							"width": 80,
@@ -2880,7 +3597,7 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "Level_10",
+			"identifier": "Level_13",
 			"iid": "b160ee80-3b70-11ee-b63b-3f7dc21e78ca",
 			"uid": 42,
 			"worldX": -1,
@@ -2925,7 +3642,8 @@
 					"id": "V_String",
 					"params": ["Hard"]
 				}] },
-				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+				{ "__identifier": "ZoomBotInstructions", "__type": "Int", "__value": 4, "__tile": null, "defUid": 35, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+				{ "__identifier": "SubRoutineAllowed", "__type": "Int", "__value": 0, "__tile": null, "defUid": 46, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -3032,7 +3750,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"__worldX": 9680,
+							"__worldX": 12464,
 							"__worldY": 720,
 							"iid": "b160ee83-3b70-11ee-b63b-f9e10debf5a1",
 							"width": 80,
@@ -3051,7 +3769,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#265C42",
-							"__worldX": 9680,
+							"__worldX": 12464,
 							"__worldY": 480,
 							"iid": "b160ee84-3b70-11ee-b63b-4db09f7d4c48",
 							"width": 80,
@@ -3067,7 +3785,7 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#124E89",
-							"__worldX": 9440,
+							"__worldX": 12224,
 							"__worldY": 720,
 							"iid": "b160ee85-3b70-11ee-b63b-ad51bb7cbd6b",
 							"width": 80,
