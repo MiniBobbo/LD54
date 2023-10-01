@@ -71,6 +71,6 @@ export class Preload extends Phaser.Scene {
 
 
     create() {
-
+        this.anims.create({ key: 'explode', frameRate: 60, frames: this.anims.generateFrameNames('atlas', { prefix: 'explode_', end: 29}), repeat: 0 });
     }
 }

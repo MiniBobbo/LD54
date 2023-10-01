@@ -9,8 +9,10 @@ export class MainMenuScene extends Phaser.Scene {
     create() {
         if(C.gd == null) {
             C.gd = JSON.parse(localStorage.getItem(C.GAME_NAME));
-
         }
+
+        this.scene.remove('game');
+        this.scene.remove('inst');
 
         this.Title = this.add.text(120,30, 'GAME TITLE').setFontSize(16).setWordWrapWidth(240).setOrigin(.5,0);
 

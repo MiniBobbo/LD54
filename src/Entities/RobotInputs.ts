@@ -30,7 +30,7 @@ export class RobotInputs {
         this.Inputs.forEach(element => {
             i.push(element.i);
         });
-        return i;
+        return i.filter(num => num != 0);
     }
 
 }

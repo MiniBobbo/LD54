@@ -7,4 +7,5 @@ export enum SceneEvents {
     CHANGED_INPUTS = 'changeinput',
     SUCCESS = 'success',
     FAILED = 'failed',
+    EFFECT = 'effect',
 }

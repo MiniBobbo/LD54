@@ -1,3 +1,4 @@
+import { EntityEvents } from "../enum/EntityEvents";
 import { EntityStatus } from "../enum/EntityStatus";
 import { Instructions } from "../enum/Instructions";
 import { MapData } from "../helpers/MapData";
@@ -28,7 +29,7 @@ export class EntityModel {
     }
 
     Step(instruction:Instructions) {
-        if(this.status == EntityStatus.COMPLETE)
+        if(this.status == EntityStatus.COMPLETE || this.status == EntityStatus.DESTROYED)
         return;
         switch (instruction) {
             case Instructions.Forward:
@@ -46,6 +47,12 @@ export class EntityModel {
             default:
                 break;
         }
+    }
+
+    Destroy() {
+        this.status = EntityStatus.DESTROYED;
+        this.map.emitter.emit(EntityEvents.DESTROYED, this.ID);
+        
     }
 
     Right() {
@@ -93,7 +100,7 @@ export class EntityModel {
     GetTileIndex(c:Phaser.Tilemaps.TilemapLayer, x:number,y:number):number {
         if(x < 0 || x >= c.layer.width || y < 0 || y >= c.layer.height)
             return -1;
-        return c.getTileAt(this.x-1, this.y , true).index;
+        return c.getTileAt(x, y , true).index;
     }
 
     Forward() {
@@ -102,21 +109,25 @@ export class EntityModel {
             case Direction.North:
                 if(this.GetTileIndex(c, this.x, this.y-1) == 1) {
                     this.y--;
+                    this.map.emitter.emit(EntityEvents.MOVE, this.ID, this.x, this.y, this.d);
                 }
                 break;
             case Direction.East:
                 if(this.GetTileIndex(c, this.x+1, this.y) == 1) {
                     this.x++;
+                    this.map.emitter.emit(EntityEvents.MOVE, this.ID, this.x, this.y, this.d);
                 }
                 break;
             case Direction.South:
                 if(this.GetTileIndex(c, this.x, this.y+1) == 1) {
                     this.y++;
+                    this.map.emitter.emit(EntityEvents.MOVE, this.ID, this.x, this.y, this.d);
                 }
                 break;
             case Direction.West:
                 if(this.GetTileIndex(c, this.x-1, this.y) == 1) {
                     this.x--;
+                    this.map.emitter.emit(EntityEvents.MOVE, this.ID, this.x, this.y, this.d);
                 }
                 break;
         
@@ -134,8 +145,9 @@ export class EntityModel {
 
     Success() {
         this.status = EntityStatus.COMPLETE;
-        this.x = 1000;
-        this.y = 1000;
+        this.map.emitter.emit(EntityEvents.TELEPORT, this.ID);
+        // this.x = 1000;
+        // this.y = 1000;
     }
 }
 

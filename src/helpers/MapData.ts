@@ -1,6 +1,9 @@
+import { C } from "../C";
+import { EffectTypes } from "../enum/EffectTypes";
 import { EntityStatus } from "../enum/EntityStatus";
 import { Instructions } from "../enum/Instructions";
 import { MapDataStatus } from "../enum/MapDataStatus";
+import { SceneEvents } from "../events/SceneEvents";
 import { Layer } from "../map/LDtkReader";
 import { EntityModel } from "../models/EntityModel";
 import { GoBotModel } from "../models/GoBotModel";
@@ -25,7 +28,7 @@ export class MapData {
     Status:MapDataStatus = MapDataStatus.INITIAL;
 
 
-    private emitter:Phaser.Events.EventEmitter;
+    emitter:Phaser.Events.EventEmitter;
 
     private TempID:number = 0;
 
@@ -70,6 +73,19 @@ export class MapData {
                 gb.Success();
         });
 
+        //Check for collisions between all the bots.  
+        for (let first = 0; first < this.AllBots.length-1; first++) {
+            for (let second = first+1; second < this.AllBots.length; second++) {
+                let firstBot = this.AllBots[first];
+                let secondBot = this.AllBots[second];
+                if(firstBot.status == EntityStatus.NORMAL && secondBot.status == EntityStatus.NORMAL && firstBot.x == secondBot.x && firstBot.y == secondBot.y   ) {
+                    firstBot.Destroy();
+                    secondBot.Destroy();
+                    this.emitter.emit(SceneEvents.EFFECT, firstBot.x * C.TILE_SIZE_X, firstBot.y * C.TILE_SIZE_Y, EffectTypes.Explode);
+                }
+            }
+        }
+
         //Check for wins and losses.  
         if(this.AllBots.filter(b=>b.status == EntityStatus.DESTROYED).length > 0)
             this.Status = MapDataStatus.FAILED;
@@ -86,6 +102,7 @@ export class MapData {
     Reset() {
         this.GoBots.forEach(element => {
             element.Reset();
+            
         });
         this.complete = false;
         this.ElapsedSteps = 0;

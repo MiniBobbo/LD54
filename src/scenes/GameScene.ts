@@ -11,6 +11,8 @@ import { InstructionScene } from "./InstructionScene";
 import { SceneEvents } from "../events/SceneEvents";
 import { MapDataStatus } from "../enum/MapDataStatus";
 import { Scene } from "phaser";
+import { EffectManager } from "../helpers/EffectManager";
+import { EntityEvents } from "../enum/EntityEvents";
 
 export class GameScene extends Phaser.Scene {
        
@@ -20,6 +22,8 @@ export class GameScene extends Phaser.Scene {
     topLayer:Phaser.GameObjects.Layer;
     private md:MapData;
     private robots:Robot[] = [];
+
+    EM:EffectManager;
 
     //These are the running variables.
     private status:PlayState = PlayState.Stopped;
@@ -35,6 +39,8 @@ export class GameScene extends Phaser.Scene {
         // .setPosition(200,200)
         // .setZoom(2);
         this.inst = this.scene.add('inst', InstructionScene, true) as InstructionScene;
+
+        this.EM = new EffectManager(this);
 
         this.groundLayer = this.add.layer().setDepth(10);
         this.groundLayer.postFX.addBloom(0xffffff,1,1,1,3);
@@ -54,6 +60,8 @@ export class GameScene extends Phaser.Scene {
         this.inst.events.on(SceneEvents.GO, this.Start, this);
         this.inst.events.on(SceneEvents.RESET, this.Reset, this);
         this.events.on(SceneEvents.SUCCESS, this.Success, this);
+        this.events.on(SceneEvents.FAILED, this.Fail, this);
+        this.events.on(EntityEvents.DESTROYED, (id:number)=>{this.robots.find(r=>r.ID == id).s.setVisible(false)}, this);
 
 
 
@@ -61,6 +69,14 @@ export class GameScene extends Phaser.Scene {
         title.setPosition(350, 20);
         this.topLayer.add(title);
         this.topLayer.postFX.addBloom(0xffffff, 1,1,1,2);
+    }
+
+    Fail() {
+        this.time.addEvent({
+            delay:500,
+            callbackScope:this,
+            callback:()=>{this.Reset();}
+        });
     }
 
     Success() {
@@ -74,7 +90,7 @@ export class GameScene extends Phaser.Scene {
 
         let menu = this.add.bitmapText(350, 500, '5px', 'Back to Menu').setOrigin(.5).setScale(5).setMaxWidth(650)
         .setTint(0xff3333)
-        .setInteractive().on('pointerdown', ()=>{console.log('Clicked Menu');}, this);
+        .setInteractive().on('pointerdown', ()=>{this.scene.start('menu');}, this);
         
 
         this.topLayer.add(message);
@@ -88,16 +104,25 @@ export class GameScene extends Phaser.Scene {
         });
 
         this.TileArray = [];
+        let tempTiles:Phaser.GameObjects.Image[] = [];
 
         this.md.tiles.forEachTile(t=>{
             if(t.index == 1) {
                 let tile = new Tile(this);
                 tile.x = t.x;
                 tile.y = t.y;
-                tile.s.setPosition(t.x * C.TILE_SIZE_X, t.y * C.TILE_SIZE_Y);
+                tile.s.setPosition(t.x * C.TILE_SIZE_X, t.y * C.TILE_SIZE_Y + 1000);
                 this.TileArray.push(tile);
                 this.groundLayer.add(tile.s);
             }
+        });
+
+        this.tweens.add({
+            targets:this.groundLayer.getChildren(),
+            y:{ value: '-=1000', ease: 'Cubic.easeInOut'},
+            duration:1000,
+            delay: this.tweens.stagger(10,null)
+
         });
 
         let endTile = this.TileArray.find(t=>t.x == this.md.end.x && t.y == this.md.end.y);
@@ -105,7 +130,12 @@ export class GameScene extends Phaser.Scene {
 
         this.md.GoBots.forEach(gb=>{
             let r = new Robot(this, gb.ID);
-            r.SetStartPosition(gb.x, gb.y, gb.d);
+            this.time.addEvent({
+                delay:1000,
+                callbackScope:this,
+                callback:()=>{r.SetStartPosition(gb.x, gb.y, gb.d);
+                }
+            });
             this.midLayer.add(r.s);
             this.robots.push(r);
         });
@@ -142,10 +172,14 @@ export class GameScene extends Phaser.Scene {
     }
 
     Reset() {
+        if(this.status != PlayState.Running)
+            return;
         this.md.Reset();
         this.md.AllBots.forEach(element => {
             let r = this.robots.find(r=> r.ID == element.ID);
             r.SetPosition(element.x, element.y, element.d);
+            r.s.setVisible(true);
+            r.Twitch();
         });
         this.status = PlayState.Stopped;
     }
